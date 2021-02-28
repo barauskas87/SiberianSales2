@@ -17,7 +17,9 @@ namespace SiberianSales2.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Sobre o Siberian Sales 2.0";
+            ViewData["criador"] = "criado por: Victor Barauskas";
+            ViewData["sobre"] = "O Siberian Sales 2.0 foi criado para suprir a necessidade de organizar e dinamizar o processo de vendas por representação dentro do sistema de distribuidor x revenda. Nosso sistema foi pensado para atender as revendas de informática que trabalham com comissionamento sobre vendas indiretas, com a gestão de pedidos, comissões, clientes e também de contatos e eventos, para facilitar o dia a dia de nossos vendedores."; 
 
             return View();
         }
