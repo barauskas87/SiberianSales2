@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SiberianSales2.Models;
+using SiberianSales2.Models.ViewModels;
 
 namespace SiberianSales2.Controllers
 {

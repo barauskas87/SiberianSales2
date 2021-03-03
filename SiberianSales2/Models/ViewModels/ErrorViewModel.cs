@@ -1,6 +1,6 @@
 using System;
 
-namespace SiberianSales2.Models
+namespace SiberianSales2.Models.ViewModels
 {
     public class ErrorViewModel
     {
