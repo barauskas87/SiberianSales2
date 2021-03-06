@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using SiberianSales2.Data;
 
 namespace SiberianSales2
 {
@@ -33,6 +35,9 @@ namespace SiberianSales2
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<SiberianSales2Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SiberianSales2Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
