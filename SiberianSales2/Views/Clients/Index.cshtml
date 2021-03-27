@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SiberianSales2.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientFantasyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientCnpj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateInscription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateInscriptionExemption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MunicipalInscription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderObservation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveClient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientFantasyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientCnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateInscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateInscriptionExemption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MunicipalInscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Website)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderObservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveClient)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

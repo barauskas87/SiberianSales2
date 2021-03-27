@@ -1,0 +1,36 @@
+﻿@model SiberianSales2.Models.ComissionDuplicate
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComissionDuplicate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComissionDuplicateValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ComissionDuplicateValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AvaliableDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvaliableDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

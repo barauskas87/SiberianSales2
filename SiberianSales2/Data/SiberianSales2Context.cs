@@ -37,6 +37,7 @@ namespace SiberianSales2.Data
         public DbSet<Stock> Stock { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<TaxNumber> TaxNumber { get; set; }
+        public DbSet<SiberianSales2.Models.PaymentTerms> PaymentTerms { get; set; }
 
     }
 }

@@ -1,0 +1,128 @@
+﻿@model SiberianSales2.Models.Supplier
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Supplier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SupplierName" class="control-label"></label>
+                <input asp-for="SupplierName" class="form-control" />
+                <span asp-validation-for="SupplierName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierFantasyName" class="control-label"></label>
+                <input asp-for="SupplierFantasyName" class="form-control" />
+                <span asp-validation-for="SupplierFantasyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierCnpj" class="control-label"></label>
+                <input asp-for="SupplierCnpj" class="form-control" />
+                <span asp-validation-for="SupplierCnpj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StateInscription" class="control-label"></label>
+                <input asp-for="StateInscription" class="form-control" />
+                <span asp-validation-for="StateInscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="StateInscriptionExemption" /> @Html.DisplayNameFor(model => model.StateInscriptionExemption)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MunicipalInscription" class="control-label"></label>
+                <input asp-for="MunicipalInscription" class="form-control" />
+                <span asp-validation-for="MunicipalInscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TxComissionRetention" class="control-label"></label>
+                <input asp-for="TxComissionRetention" class="form-control" />
+                <span asp-validation-for="TxComissionRetention" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observation" class="control-label"></label>
+                <input asp-for="Observation" class="form-control" />
+                <span asp-validation-for="Observation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceValidityDays" class="control-label"></label>
+                <input asp-for="PriceValidityDays" class="form-control" />
+                <span asp-validation-for="PriceValidityDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AditionalTaxes" class="control-label"></label>
+                <input asp-for="AditionalTaxes" class="form-control" />
+                <span asp-validation-for="AditionalTaxes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IcmsTx" class="control-label"></label>
+                <input asp-for="IcmsTx" class="form-control" />
+                <span asp-validation-for="IcmsTx" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="LocalStockReseller" /> @Html.DisplayNameFor(model => model.LocalStockReseller)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountManager" class="control-label"></label>
+                <input asp-for="AccountManager" class="form-control" />
+                <span asp-validation-for="AccountManager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountManagerPhone" class="control-label"></label>
+                <input asp-for="AccountManagerPhone" class="form-control" />
+                <span asp-validation-for="AccountManagerPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccountManagerEmail" class="control-label"></label>
+                <input asp-for="AccountManagerEmail" class="form-control" />
+                <span asp-validation-for="AccountManagerEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteLogin" class="control-label"></label>
+                <input asp-for="SiteLogin" class="form-control" />
+                <span asp-validation-for="SiteLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SitePassword" class="control-label"></label>
+                <input asp-for="SitePassword" class="form-control" />
+                <span asp-validation-for="SitePassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

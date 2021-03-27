@@ -1,0 +1,36 @@
+﻿@model SiberianSales2.Models.SalesOrderItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SalesOrderItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemUnitValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemUnitValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemUnitCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemUnitCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemQtde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemQtde)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

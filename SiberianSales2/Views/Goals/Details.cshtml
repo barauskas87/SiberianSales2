@@ -1,0 +1,48 @@
+﻿@model SiberianSales2.Models.Goals
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Goals</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BruteSales)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BruteSales)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LiquidSales)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LiquidSales)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesCommission)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesCommission)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

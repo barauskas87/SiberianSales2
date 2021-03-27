@@ -1,0 +1,93 @@
+﻿@model SiberianSales2.Models.SalesOrder
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>SalesOrder</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Reference" class="control-label"></label>
+                <input asp-for="Reference" class="form-control" />
+                <span asp-validation-for="Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SendingDate" class="control-label"></label>
+                <input asp-for="SendingDate" class="form-control" />
+                <span asp-validation-for="SendingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FiscalCupom" class="control-label"></label>
+                <input asp-for="FiscalCupom" class="form-control" />
+                <span asp-validation-for="FiscalCupom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrackingId" class="control-label"></label>
+                <input asp-for="TrackingId" class="form-control" />
+                <span asp-validation-for="TrackingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FreightTypeId" class="control-label"></label>
+                <input asp-for="FreightTypeId" class="form-control" />
+                <span asp-validation-for="FreightTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FreightValue" class="control-label"></label>
+                <input asp-for="FreightValue" class="form-control" />
+                <span asp-validation-for="FreightValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observation" class="control-label"></label>
+                <input asp-for="Observation" class="form-control" />
+                <span asp-validation-for="Observation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResellerFiscalCupom" class="control-label"></label>
+                <input asp-for="ResellerFiscalCupom" class="form-control" />
+                <span asp-validation-for="ResellerFiscalCupom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResellerFiscalCupomDate" class="control-label"></label>
+                <input asp-for="ResellerFiscalCupomDate" class="form-control" />
+                <span asp-validation-for="ResellerFiscalCupomDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderTotalValue" class="control-label"></label>
+                <input asp-for="SalesOrderTotalValue" class="form-control" />
+                <span asp-validation-for="SalesOrderTotalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesOrderComission" class="control-label"></label>
+                <input asp-for="SalesOrderComission" class="form-control" />
+                <span asp-validation-for="SalesOrderComission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

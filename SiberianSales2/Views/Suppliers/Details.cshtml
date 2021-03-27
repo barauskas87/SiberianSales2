@@ -1,0 +1,132 @@
+﻿@model SiberianSales2.Models.Supplier
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supplier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierFantasyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupplierFantasyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierCnpj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupplierCnpj)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateInscription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateInscription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateInscriptionExemption)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateInscriptionExemption)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MunicipalInscription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MunicipalInscription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TxComissionRetention)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TxComissionRetention)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceValidityDays)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriceValidityDays)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AditionalTaxes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AditionalTaxes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IcmsTx)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IcmsTx)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalStockReseller)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LocalStockReseller)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccountManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManagerPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccountManagerPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountManagerEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccountManagerEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SiteLogin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SiteLogin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SitePassword)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SitePassword)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

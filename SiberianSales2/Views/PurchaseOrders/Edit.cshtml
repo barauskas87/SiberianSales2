@@ -1,0 +1,69 @@
+﻿@model SiberianSales2.Models.PurchaseOrder
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>PurchaseOrder</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PoReference" class="control-label"></label>
+                <input asp-for="PoReference" class="form-control" />
+                <span asp-validation-for="PoReference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="POrderDate" class="control-label"></label>
+                <input asp-for="POrderDate" class="form-control" />
+                <span asp-validation-for="POrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PSendingDate" class="control-label"></label>
+                <input asp-for="PSendingDate" class="form-control" />
+                <span asp-validation-for="PSendingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoFiscalCupom" class="control-label"></label>
+                <input asp-for="PoFiscalCupom" class="form-control" />
+                <span asp-validation-for="PoFiscalCupom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoTrackingId" class="control-label"></label>
+                <input asp-for="PoTrackingId" class="form-control" />
+                <span asp-validation-for="PoTrackingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoObservation" class="control-label"></label>
+                <input asp-for="PoObservation" class="form-control" />
+                <span asp-validation-for="PoObservation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseOrderTotalValue" class="control-label"></label>
+                <input asp-for="PurchaseOrderTotalValue" class="form-control" />
+                <span asp-validation-for="PurchaseOrderTotalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

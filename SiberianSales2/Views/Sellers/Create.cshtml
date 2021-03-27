@@ -1,0 +1,83 @@
+﻿@model SiberianSales2.Models.Seller
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Seller</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone2" class="control-label"></label>
+                <input asp-for="Phone2" class="form-control" />
+                <span asp-validation-for="Phone2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skype" class="control-label"></label>
+                <input asp-for="Skype" class="form-control" />
+                <span asp-validation-for="Skype" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Linkedin" class="control-label"></label>
+                <input asp-for="Linkedin" class="form-control" />
+                <span asp-validation-for="Linkedin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facebook" class="control-label"></label>
+                <input asp-for="Facebook" class="form-control" />
+                <span asp-validation-for="Facebook" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tweeter" class="control-label"></label>
+                <input asp-for="Tweeter" class="form-control" />
+                <span asp-validation-for="Tweeter" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TxCommission" class="control-label"></label>
+                <input asp-for="TxCommission" class="form-control" />
+                <span asp-validation-for="TxCommission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseSalary" class="control-label"></label>
+                <input asp-for="BaseSalary" class="form-control" />
+                <span asp-validation-for="BaseSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -15,7 +15,7 @@ namespace SiberianSales2.Models
         public bool StateInscriptionExemption { get; set; }
         public int MunicipalInscription { get; set; }
         public Address Address { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Website { get; set; }
         public long Observation { get; set; }
         public long OrderObservation { get; set; }
@@ -29,7 +29,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Client(int id, string clientName, string clientFantasyName, int clientCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, int phone, string website, long observation, long orderObservation, bool activeClient, Seller accountSeller, Address address)
+        public Client(int id, string clientName, string clientFantasyName, int clientCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, string phone, string website, long observation, long orderObservation, bool activeClient, Seller accountSeller, Address address)
         {
             Id = id;
             ClientName = clientName;

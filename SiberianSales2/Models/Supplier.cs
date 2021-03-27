@@ -14,7 +14,7 @@ namespace SiberianSales2.Models
         public int StateInscription { get; set; }
         public bool StateInscriptionExemption { get; set; }
         public int MunicipalInscription { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Website { get; set; }
         public double TxComissionRetention { get; set; }
         public long Observation { get; set; }
@@ -39,7 +39,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Supplier(int id, string supplierName, string supplierFantasyName, int supplierCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, int phone, string website, double txComissionRetention, long observation, int priceValidityDays, double aditionalTaxes, double icmsTx, bool localStockReseller, Address address, string accountManager, int accountManagerPhone, string accountManagerEmail, string siteLogin, string sitePassword)
+        public Supplier(int id, string supplierName, string supplierFantasyName, int supplierCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, string phone, string website, double txComissionRetention, long observation, int priceValidityDays, double aditionalTaxes, double icmsTx, bool localStockReseller, Address address, string accountManager, int accountManagerPhone, string accountManagerEmail, string siteLogin, string sitePassword)
         {
             Id = id;
             SupplierName = supplierName;

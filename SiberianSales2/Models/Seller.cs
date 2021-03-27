@@ -9,8 +9,8 @@ namespace SiberianSales2.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Phone { get; set; }
-        public int Phone2 { get; set; }
+        public string Phone { get; set; }
+        public string Phone2 { get; set; }
         public string Email { get; set; }
         public string Skype { get; set; }
         public string Linkedin { get; set; }
@@ -32,7 +32,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Seller(int id, string name, int phone, int phone2, string email, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, double txCommission, double baseSalary, Department department, Reseller reseller)
+        public Seller(int id, string name, string phone, string phone2, string email, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, double txCommission, double baseSalary, Department department, Reseller reseller)
         {
             Id = id;
             Name = name;

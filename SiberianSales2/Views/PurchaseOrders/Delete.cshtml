@@ -1,0 +1,69 @@
+﻿@model SiberianSales2.Models.PurchaseOrder
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PurchaseOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PoReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.POrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.POrderDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PSendingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PSendingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoFiscalCupom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoFiscalCupom)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoTrackingId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoTrackingId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoObservation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoObservation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseOrderTotalValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseOrderTotalValue)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

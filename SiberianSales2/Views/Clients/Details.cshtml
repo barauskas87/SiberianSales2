@@ -1,0 +1,84 @@
+﻿@model SiberianSales2.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientFantasyName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientFantasyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientCnpj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientCnpj)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateInscription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateInscription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StateInscriptionExemption)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StateInscriptionExemption)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MunicipalInscription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MunicipalInscription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderObservation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderObservation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveClient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActiveClient)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

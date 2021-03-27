@@ -1,0 +1,88 @@
+﻿@model SiberianSales2.Models.Client
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientFantasyName" class="control-label"></label>
+                <input asp-for="ClientFantasyName" class="form-control" />
+                <span asp-validation-for="ClientFantasyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientCnpj" class="control-label"></label>
+                <input asp-for="ClientCnpj" class="form-control" />
+                <span asp-validation-for="ClientCnpj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StateInscription" class="control-label"></label>
+                <input asp-for="StateInscription" class="form-control" />
+                <span asp-validation-for="StateInscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="StateInscriptionExemption" /> @Html.DisplayNameFor(model => model.StateInscriptionExemption)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MunicipalInscription" class="control-label"></label>
+                <input asp-for="MunicipalInscription" class="form-control" />
+                <span asp-validation-for="MunicipalInscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Website" class="control-label"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observation" class="control-label"></label>
+                <input asp-for="Observation" class="form-control" />
+                <span asp-validation-for="Observation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderObservation" class="control-label"></label>
+                <input asp-for="OrderObservation" class="form-control" />
+                <span asp-validation-for="OrderObservation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ActiveClient" /> @Html.DisplayNameFor(model => model.ActiveClient)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

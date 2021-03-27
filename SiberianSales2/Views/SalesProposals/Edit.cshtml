@@ -1,0 +1,64 @@
+﻿@model SiberianSales2.Models.SalesProposal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>SalesProposal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ProposalDate" class="control-label"></label>
+                <input asp-for="ProposalDate" class="form-control" />
+                <span asp-validation-for="ProposalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProposalValidity" class="control-label"></label>
+                <input asp-for="ProposalValidity" class="form-control" />
+                <span asp-validation-for="ProposalValidity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FreightValue" class="control-label"></label>
+                <input asp-for="FreightValue" class="form-control" />
+                <span asp-validation-for="FreightValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observations" class="control-label"></label>
+                <input asp-for="Observations" class="form-control" />
+                <span asp-validation-for="Observations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProposalValue" class="control-label"></label>
+                <input asp-for="ProposalValue" class="form-control" />
+                <span asp-validation-for="ProposalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProposalComissionValue" class="control-label"></label>
+                <input asp-for="ProposalComissionValue" class="form-control" />
+                <span asp-validation-for="ProposalComissionValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

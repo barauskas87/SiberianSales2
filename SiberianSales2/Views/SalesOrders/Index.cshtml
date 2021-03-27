@@ -1,0 +1,107 @@
+﻿@model IEnumerable<SiberianSales2.Models.SalesOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SendingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FiscalCupom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FreightTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FreightValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResellerFiscalCupom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResellerFiscalCupomDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesOrderTotalValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesOrderComission)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FiscalCupom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrackingId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FreightTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FreightValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResellerFiscalCupom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResellerFiscalCupomDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesOrderTotalValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesOrderComission)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

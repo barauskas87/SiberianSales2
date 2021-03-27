@@ -1,0 +1,30 @@
+﻿@model SiberianSales2.Models.TaxNumber
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaxNumber</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ncm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ncm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ipi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ipi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

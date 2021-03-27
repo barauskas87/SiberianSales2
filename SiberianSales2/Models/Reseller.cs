@@ -14,7 +14,7 @@ namespace SiberianSales2.Models
         public int StateInscription { get; set; }
         public bool StateInscriptionExemption { get; set; }
         public int MunicipalInscription { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Website { get; set; }
         public double TxComissionRetention { get; set; }
         public long Observation { get; set; }
@@ -27,7 +27,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Reseller(int id, string resellerName, string resellerFantasyName, int resellerCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, int phone, string website, double txComissionRetention, long observation, Address address)
+        public Reseller(int id, string resellerName, string resellerFantasyName, int resellerCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, string phone, string website, double txComissionRetention, long observation, Address address)
         {
             Id = id;
             ResellerName = resellerName;

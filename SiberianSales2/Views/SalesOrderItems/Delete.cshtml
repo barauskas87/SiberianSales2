@@ -1,0 +1,39 @@
+﻿@model SiberianSales2.Models.SalesOrderItem
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SalesOrderItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemUnitValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemUnitValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemUnitCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemUnitCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemQtde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemQtde)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

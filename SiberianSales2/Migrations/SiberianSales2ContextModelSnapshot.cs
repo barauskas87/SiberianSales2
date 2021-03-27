@@ -64,7 +64,7 @@ namespace SiberianSales2.Migrations
 
                     b.Property<long>("OrderObservation");
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
                     b.Property<int>("StateInscription");
 
@@ -120,7 +120,7 @@ namespace SiberianSales2.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
                     b.Property<string>("Skype");
 
@@ -233,6 +233,22 @@ namespace SiberianSales2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PaymentForms");
+                });
+
+            modelBuilder.Entity("SiberianSales2.Models.PaymentTerms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PaymentDuplicates");
+
+                    b.Property<string>("PaymentTerm");
+
+                    b.Property<int>("PaymentTermDays");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentTerms");
                 });
 
             modelBuilder.Entity("SiberianSales2.Models.Product", b =>
@@ -368,7 +384,7 @@ namespace SiberianSales2.Migrations
 
                     b.Property<long>("Observation");
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
                     b.Property<int>("ResellerCnpj");
 
@@ -528,9 +544,9 @@ namespace SiberianSales2.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
-                    b.Property<int>("Phone2");
+                    b.Property<string>("Phone2");
 
                     b.Property<int?>("ResellerId");
 
@@ -596,7 +612,7 @@ namespace SiberianSales2.Migrations
 
                     b.Property<long>("Observation");
 
-                    b.Property<int>("Phone");
+                    b.Property<string>("Phone");
 
                     b.Property<int>("PriceValidityDays");
 
