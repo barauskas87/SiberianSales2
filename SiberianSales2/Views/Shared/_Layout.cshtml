@@ -26,15 +26,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SiberianSales2</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Siberian Sales 2.0</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Clients and Suppliers<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="Addresses" asp-action="Index">Addresses</a></li>
+                        <li><a asp-area="" asp-controller="Clients" asp-action="Index">Clients</a></li>
+                        <li><a asp-area="" asp-controller="Contacts" asp-action="Index">Contacts</a></li>
+                        <li><a asp-area="" asp-controller="Suppliers" asp-action="Index">Suppliers</a></li>
+                        <li><a asp-area="" asp-controller="Resellers" asp-action="Index">Resellers</a></li>
+                        <li><a asp-area="" asp-controller="Departments" asp-action="Index">Departments</a></li>
+                        <li><a asp-area="" asp-controller="Sellers" asp-action="Index">Sellers</a></li>
+                    </ul>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Products Mannagment<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></li>
+                        <li><a asp-area="" asp-controller="ProductTypes" asp-action="Index">Products Types</a></li>
+                        <li><a asp-area="" asp-controller="Stocks" asp-action="Index">Stocks</a></li>
+                    </ul>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Commercial Mannagment<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="Diaries" asp-action="Index">Diaries</a></li>
+                        <li><a asp-area="" asp-controller="Goals" asp-action="Index">Goals</a></li>
+                        <li><a asp-area="" asp-controller="Schedulings" asp-action="Index">Schedulings</a></li>
+                        <li><a asp-area="" asp-controller="SalesProposals" asp-action="Index">Sales Proposals</a></li>
+                        <li><a asp-area="" asp-controller="SalesOrders" asp-action="Index">Sales Orders</a></li>
+                        <li><a asp-area="" asp-controller="PurchaseOrders" asp-action="Index">Purchase Orders</a></li>
+                    </ul>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">General Stuff and Registers<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="TaxNumbers" asp-action="Index">Tax Numbers</a></li>
+                        <li><a asp-area="" asp-controller="FreightTypes" asp-action="Index">Freight Types</a></li>
+                        <li><a asp-area="" asp-controller="PaymentForms" asp-action="Index">Payment Forms</a></li>
+                        <li><a asp-area="" asp-controller="PaymentTerms" asp-action="Index">Payment Terms</a></li>
+                    </ul>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
-            </div>
+</div>
         </div>
     </nav>
 
