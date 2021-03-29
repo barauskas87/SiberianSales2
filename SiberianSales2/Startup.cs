@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
+using SiberianSales2.Services;
 
 namespace SiberianSales2
 {
@@ -40,6 +41,7 @@ namespace SiberianSales2
                     options.UseMySql(Configuration.GetConnectionString("SiberianSales2Context"), builder => builder.MigrationsAssembly("SiberianSales2")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
