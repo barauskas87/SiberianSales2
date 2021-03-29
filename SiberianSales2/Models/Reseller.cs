@@ -10,14 +10,14 @@ namespace SiberianSales2.Models
         public int Id { get; set; }
         public string ResellerName { get; set; }
         public string ResellerFantasyName { get; set; }
-        public int ResellerCnpj { get; set; }
-        public int StateInscription { get; set; }
+        public string ResellerCnpj { get; set; }
+        public string StateInscription { get; set; }
         public bool StateInscriptionExemption { get; set; }
-        public int MunicipalInscription { get; set; }
+        public string MunicipalInscription { get; set; }
         public string Phone { get; set; }
         public string Website { get; set; }
         public double TxComissionRetention { get; set; }
-        public long Observation { get; set; }
+        public string Observation { get; set; }
         public Address Address { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
         public ICollection<SalesProposal> ResellerSalesProposals { get; set; } = new List<SalesProposal>();
@@ -27,7 +27,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Reseller(int id, string resellerName, string resellerFantasyName, int resellerCnpj, int stateInscription, bool stateInscriptionExemption, int municipalInscription, string phone, string website, double txComissionRetention, long observation, Address address)
+        public Reseller(int id, string resellerName, string resellerFantasyName, string resellerCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, double txComissionRetention, string observation, Address address)
         {
             Id = id;
             ResellerName = resellerName;
