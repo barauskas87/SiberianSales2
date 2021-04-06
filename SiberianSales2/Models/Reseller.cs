@@ -18,7 +18,7 @@ namespace SiberianSales2.Models
         public string Website { get; set; }
         public double TxComissionRetention { get; set; }
         public string Observation { get; set; }
-        public Address Address { get; set; }
+        public int AddressId { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
         public ICollection<SalesProposal> ResellerSalesProposals { get; set; } = new List<SalesProposal>();
         public ICollection<SalesOrder> ResellerSalesOrders { get; set; } = new List<SalesOrder>();
@@ -27,7 +27,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Reseller(int id, string resellerName, string resellerFantasyName, string resellerCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, double txComissionRetention, string observation, Address address)
+        public Reseller(int id, string resellerName, string resellerFantasyName, string resellerCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, double txComissionRetention, string observation, int addressId)
         {
             Id = id;
             ResellerName = resellerName;
@@ -40,7 +40,7 @@ namespace SiberianSales2.Models
             Website = website;
             TxComissionRetention = txComissionRetention;
             Observation = observation;
-            Address = address;
+            AddressId = addressId;
         }
 
         public void AddSeller(Seller seller)

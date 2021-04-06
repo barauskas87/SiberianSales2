@@ -8,16 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
 using SiberianSales2.Services;
+using SiberianSales2.Models.ViewModels;
 
 namespace SiberianSales2.Controllers
 {
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
+        private readonly ResellerService _resellerService;
 
-        public SellersController(SellerService sellerService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService, ResellerService resellerService)
         {
             _sellerService = sellerService;
+            _departmentService = departmentService;
+            _resellerService = resellerService;
         }
 
         public IActionResult Index()
@@ -28,7 +33,10 @@ namespace SiberianSales2.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var departments = _departmentService.FindAll();
+            var resellers = _resellerService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments, Resellers = resellers };
+            return View(viewModel);
         }
 
         [HttpPost]

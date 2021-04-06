@@ -11,6 +11,7 @@ namespace SiberianSales2.Models
         public double SoItemUnitValue { get; set; }
         public double SoItemUnitCost { get; set; }
         public int SoItemQtde { get; set; }
+        public int SalesOrderId { get; set; }
 
         public double TotalValueProduct ()
         {
@@ -31,11 +32,12 @@ namespace SiberianSales2.Models
         {
         }
 
-        public SalesOrderItem(int id, double soItemUnitValue, int soItemQtde)
+        public SalesOrderItem(int id, double soItemUnitValue, int soItemQtde, int salesOrderId)
         {
             Id = id;
             SoItemUnitValue = soItemUnitValue;
             SoItemQtde = soItemQtde;
+            SalesOrderId = salesOrderId;
         }
 
         //Falta criar o método de decrescimo do estoque

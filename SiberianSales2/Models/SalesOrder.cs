@@ -9,7 +9,7 @@ namespace SiberianSales2.Models
     public class SalesOrder
     {
         public int Id { get; set; }
-        public Seller Seller { get; set; }
+        public int SellerId { get; set; }
         public string Reference { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime SendingDate { get; set; }
@@ -77,10 +77,10 @@ namespace SiberianSales2.Models
         {
         }
 
-        public SalesOrder(int id, Seller seller, string reference, DateTime orderDate, DateTime sendingDate, int fiscalCupom, string trackingId, int freightTypeId, double freightValue, long observation, int resellerFiscalCupom, DateTime resellerFiscalCupomDate, SalesOrderStatus status, double salesOrderTotalValue, double salesOrderComission)
+        public SalesOrder(int id, int sellerId, string reference, DateTime orderDate, DateTime sendingDate, int fiscalCupom, string trackingId, int freightTypeId, double freightValue, long observation, int resellerFiscalCupom, DateTime resellerFiscalCupomDate, SalesOrderStatus status, double salesOrderTotalValue, double salesOrderComission)
         {
             Id = id;
-            Seller = seller;
+            SellerId = sellerId;
             Reference = reference;
             OrderDate = orderDate;
             SendingDate = sendingDate;

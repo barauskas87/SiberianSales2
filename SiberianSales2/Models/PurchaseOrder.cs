@@ -14,7 +14,7 @@ namespace SiberianSales2.Models
         public DateTime PSendingDate { get; set; }
         public int PoFiscalCupom { get; set; }
         public string PoTrackingId { get; set; }
-        public long PoObservation { get; set; }
+        public string PoObservation { get; set; }
         public PurchaseOrderStatus Status { get; set; }
         public double PurchaseOrderTotalValue { get; set; }
         public ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; } = new List<PurchaseOrderItem>();
@@ -41,7 +41,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public PurchaseOrder(int id, string poReference, DateTime pOrderDate, DateTime pSendingDate, int poFiscalCupom, string poTrackingId, long poObservation, PurchaseOrderStatus status, double purchaseOrderTotalValue)
+        public PurchaseOrder(int id, string poReference, DateTime pOrderDate, DateTime pSendingDate, int poFiscalCupom, string poTrackingId, string poObservation, PurchaseOrderStatus status, double purchaseOrderTotalValue)
         {
             Id = id;
             PoReference = poReference;

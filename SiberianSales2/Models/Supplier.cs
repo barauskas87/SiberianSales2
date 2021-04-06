@@ -22,7 +22,7 @@ namespace SiberianSales2.Models
         public double AditionalTaxes { get; set; }
         public double IcmsTx { get; set; }
         public bool LocalStockReseller { get; set; }
-        public Address Address { get; set; }
+        public int AddressId { get; set; }
         public string AccountManager { get; set; }
         public string AccountManagerPhone { get; set; }
         public string AccountManagerEmail { get; set; }
@@ -39,7 +39,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Supplier(int id, string supplierName, string supplierFantasyName, string supplierCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, double txComissionRetention, string observation, int priceValidityDays, double aditionalTaxes, double icmsTx, bool localStockReseller, Address address, string accountManager, string accountManagerPhone, string accountManagerEmail, string siteLogin, string sitePassword)
+        public Supplier(int id, string supplierName, string supplierFantasyName, string supplierCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, double txComissionRetention, string observation, int priceValidityDays, double aditionalTaxes, double icmsTx, bool localStockReseller, int addressId, string accountManager, string accountManagerPhone, string accountManagerEmail, string siteLogin, string sitePassword)
         {
             Id = id;
             SupplierName = supplierName;
@@ -56,7 +56,7 @@ namespace SiberianSales2.Models
             AditionalTaxes = aditionalTaxes;
             IcmsTx = icmsTx;
             LocalStockReseller = localStockReseller;
-            Address = address;
+            AddressId = addressId;
             AccountManager = accountManager;
             AccountManagerPhone = accountManagerPhone;
             AccountManagerEmail = accountManagerEmail;
