@@ -30,7 +30,7 @@ namespace SiberianSales2.Services
 
         public async Task<Seller> FindByIdAsync(int id)
         {
-            return await _context.Seller.Include(obj => obj.Department).FirstOrDefaultAsync(obj => obj.Id == id);
+            return await _context.Seller.Include(obj => obj.Department).Include(obj => obj.Reseller).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
         public async Task RemoveAsync(int id)
