@@ -42,16 +42,6 @@ namespace SiberianSales2
 
             services.AddScoped<SeedingService>();
             services.AddScoped<SellerService>();
-            services.AddScoped<DepartmentService>();
-            services.AddScoped<ProductService>();
-            services.AddScoped<PurchaseOrderService>();
-            services.AddScoped<ResellerService>();
-            services.AddScoped<SalesOrderService>();
-            services.AddScoped<SalesProposalService>();
-            services.AddScoped<SupplierService>();
-            services.AddScoped<SalesOrderItemService>();
-            services.AddScoped<SalesProposalItemService>();
-            services.AddScoped<PurchaseOrderItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

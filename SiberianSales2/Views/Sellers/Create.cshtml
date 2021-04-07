@@ -1,4 +1,4 @@
-﻿@model SiberianSales2.Models.ViewModels.SellerFormViewModel
+﻿@model SiberianSales2.Models.Seller
 
 @{
     ViewData["Title"] = "Create";
@@ -13,67 +13,59 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Seller.Name" class="control-label"></label>
-                <input asp-for="Seller.Name" class="form-control" />
-                <span asp-validation-for="Seller.Name" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Phone" class="control-label"></label>
-                <input asp-for="Seller.Phone" class="form-control" />
-                <span asp-validation-for="Seller.Phone" class="text-danger"></span>
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Phone2" class="control-label"></label>
-                <input asp-for="Seller.Phone2" class="form-control" />
-                <span asp-validation-for="Seller.Phone2" class="text-danger"></span>
+                <label asp-for="Phone2" class="control-label"></label>
+                <input asp-for="Phone2" class="form-control" />
+                <span asp-validation-for="Phone2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Email" class="control-label"></label>
-                <input asp-for="Seller.Email" class="form-control" />
-                <span asp-validation-for="Seller.Email" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Skype" class="control-label"></label>
-                <input asp-for="Seller.Skype" class="form-control" />
-                <span asp-validation-for="Seller.Skype" class="text-danger"></span>
+                <label asp-for="Skype" class="control-label"></label>
+                <input asp-for="Skype" class="form-control" />
+                <span asp-validation-for="Skype" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Linkedin" class="control-label"></label>
-                <input asp-for="Seller.Linkedin" class="form-control" />
-                <span asp-validation-for="Seller.Linkedin" class="text-danger"></span>
+                <label asp-for="Linkedin" class="control-label"></label>
+                <input asp-for="Linkedin" class="form-control" />
+                <span asp-validation-for="Linkedin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Facebook" class="control-label"></label>
-                <input asp-for="Seller.Facebook" class="form-control" />
-                <span asp-validation-for="Seller.Facebook" class="text-danger"></span>
+                <label asp-for="Facebook" class="control-label"></label>
+                <input asp-for="Facebook" class="form-control" />
+                <span asp-validation-for="Facebook" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.Tweeter" class="control-label"></label>
-                <input asp-for="Seller.Tweeter" class="form-control" />
-                <span asp-validation-for="Seller.Tweeter" class="text-danger"></span>
+                <label asp-for="Tweeter" class="control-label"></label>
+                <input asp-for="Tweeter" class="form-control" />
+                <span asp-validation-for="Tweeter" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.BirthDate" class="control-label"></label>
-                <input asp-for="Seller.BirthDate" class="form-control" />
-                <span asp-validation-for="Seller.BirthDate" class="text-danger"></span>
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.TxCommission" class="control-label"></label>
-                <input asp-for="Seller.TxCommission" class="form-control" />
-                <span asp-validation-for="Seller.TxCommission" class="text-danger"></span>
+                <label asp-for="TxCommission" class="control-label"></label>
+                <input asp-for="TxCommission" class="form-control" />
+                <span asp-validation-for="TxCommission" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Seller.BaseSalary" class="control-label"></label>
-                <input asp-for="Seller.BaseSalary" class="form-control" />
-                <span asp-validation-for="Seller.BaseSalary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Seller.DepartmentId" class="control-label"></label>
-                <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments,"Id","Name"))" class="form-control"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Seller.ResellerId" class="control-label"></label>
-                <select asp-for="Seller.ResellerId" asp-items="@(new SelectList(Model.Resellers,"Id","ResellerName"))" class="form-control"></select>
+                <label asp-for="BaseSalary" class="control-label"></label>
+                <input asp-for="BaseSalary" class="form-control" />
+                <span asp-validation-for="BaseSalary" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

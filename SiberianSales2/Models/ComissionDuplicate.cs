@@ -13,19 +13,17 @@ namespace SiberianSales2.Models
         public double ComissionDuplicateValue { get; set; }
         public DateTime AvaliableDate { get; set; }
         public ComissionStatus Status { get; set; }
-        public int SalesOrderId { get; set; }
 
         public ComissionDuplicate()
         {
         }
 
-        public ComissionDuplicate(int id, double comissionDuplicateValue, DateTime avaliableDate, ComissionStatus status, int salesOrderId)
+        public ComissionDuplicate(int id, double comissionDuplicateValue, DateTime avaliableDate, ComissionStatus status)
         {
             Id = id;
             ComissionDuplicateValue = comissionDuplicateValue;
             AvaliableDate = avaliableDate;
             Status = status;
-            SalesOrderId = salesOrderId;
         }
 
 

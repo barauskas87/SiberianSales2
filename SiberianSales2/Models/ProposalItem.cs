@@ -11,8 +11,7 @@ namespace SiberianSales2.Models
         public double ProposalItemUnitValue { get; set; }
         public double ProposalItemUnitCost { get; set; }
         public int ProposalItemQtd { get; set; }
-        public int SalesProposalId { get; set; }
-
+        
         public double ProposalItemTotalValue()
         {
             return ProposalItemUnitValue * ProposalItemQtd;
@@ -32,12 +31,11 @@ namespace SiberianSales2.Models
         {
         }
 
-        public ProposalItem(int id, double proposalItemUnitValue, int proposalItemQtd, int salesProposalId)
+        public ProposalItem(int id, double proposalItemUnitValue, int proposalItemQtd)
         {
             Id = id;
             ProposalItemUnitValue = proposalItemUnitValue;
             ProposalItemQtd = proposalItemQtd;
-            SalesProposalId = salesProposalId;
         }
     }
 }

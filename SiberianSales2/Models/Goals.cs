@@ -13,13 +13,12 @@ namespace SiberianSales2.Models
         public double SalesCommission { get; set; }
         public string Month { get; set; }
         public int Year { get; set; }
-        public int SellerId { get; set; }
 
         public Goals()
         {
         }
 
-        public Goals(int id, double bruteSales, double liquidSales, double salesCommission, string month, int year, int sellerId)
+        public Goals(int id, double bruteSales, double liquidSales, double salesCommission, string month, int year)
         {
             Id = id;
             BruteSales = bruteSales;
@@ -27,7 +26,6 @@ namespace SiberianSales2.Models
             SalesCommission = salesCommission;
             Month = month;
             Year = year;
-            SellerId = sellerId;
         }
     }
 }

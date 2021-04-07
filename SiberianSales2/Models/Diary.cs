@@ -8,20 +8,20 @@ namespace SiberianSales2.Models
     public class Diary
     {
         public int Id { get; set; }
-        public int SellerId { get; set; }
-        public int ClientId { get; set; }
+        public Seller Seller { get; set; }
+        public Client Client { get; set; }
         public DateTime RealizationDate { get; set; }
-        public string Content { get; set; }
+        public long Content { get; set; }
 
         public Diary()
         {
         }
 
-        public Diary(int id, int sellerId, int clientId, DateTime realizationDate, string content)
+        public Diary(int id, Seller seller, Client client, DateTime realizationDate, long content)
         {
             Id = id;
-            SellerId = sellerId;
-            ClientId = clientId;
+            Seller = seller;
+            Client = client;
             RealizationDate = realizationDate;
             Content = content;
         }

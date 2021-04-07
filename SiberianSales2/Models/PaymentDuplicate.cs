@@ -10,18 +10,16 @@ namespace SiberianSales2.Models
         public int Id { get; set; }
         public double DuplicateValue { get; set; }
         public DateTime PayDate { get; set; }
-        public int SalesOrderId { get; set; }
 
         public PaymentDuplicate()
         {
         }
 
-        public PaymentDuplicate(int id, double duplicateValue, DateTime payDate, int salesOrderId)
+        public PaymentDuplicate(int id, double duplicateValue, DateTime payDate)
         {
             Id = id;
             DuplicateValue = duplicateValue;
             PayDate = payDate;
-            SalesOrderId = salesOrderId;
         }
 
 

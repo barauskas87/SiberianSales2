@@ -18,13 +18,13 @@ namespace SiberianSales2.Models
         public string Facebook { get; set; }
         public string Tweeter { get; set; }
         public DateTime BirthDate { get; set; }
-        public int ClientId { get; set; }
+        public Client Client { get; set; }
 
         public Contact()
         {
         }
 
-        public Contact(int id, string name, string phone, int extension, string email, int whatsapp, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, int clientId)
+        public Contact(int id, string name, string phone, int extension, string email, int whatsapp, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, Client client)
         {
             Id = id;
             Name = name;
@@ -37,7 +37,7 @@ namespace SiberianSales2.Models
             Facebook = facebook;
             Tweeter = tweeter;
             BirthDate = birthDate;
-            ClientId = clientId;
+            Client = client;
         }
     }
 }
