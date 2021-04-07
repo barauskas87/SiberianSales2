@@ -7,18 +7,18 @@ using SiberianSales2.Models;
 
 namespace SiberianSales2.Services
 {
-    public class AddressService
+    public class DepartmentService
     {
         private readonly SiberianSales2Context _context;
 
-        public AddressService(SiberianSales2Context context)
+        public DepartmentService(SiberianSales2Context context)
         {
             _context = context;
         }
 
-        public List<Address> FindAll()
+        public List<Department> FindAll()
         {
-            return _context.Address.OrderBy(x => x.AddressName).ToList();
+            return _context.Department.OrderBy(x => x.Name).ToList();
         }
     }
 }

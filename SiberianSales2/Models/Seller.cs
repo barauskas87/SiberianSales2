@@ -20,7 +20,9 @@ namespace SiberianSales2.Models
         public double TxCommission { get; set; }
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
+        public int DepartmentId { get; set; }
         public Reseller Reseller { get; set; }
+        public int ResellerId { get; set; }
         public ICollection<Diary> Diaries { get; set; } = new List<Diary>();
         public ICollection<Goals> SellerGoals { get; set; } = new List<Goals>();
         public ICollection<Scheduling> Schedules { get; set; } = new List<Scheduling>();
@@ -32,7 +34,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Seller(int id, string name, string phone, string phone2, string email, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, double txCommission, double baseSalary, Department department, Reseller reseller)
+        public Seller(int id, string name, string phone, string phone2, string email, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, double txCommission, double baseSalary, int departmentId, int resellerId)
         {
             Id = id;
             Name = name;
@@ -46,8 +48,8 @@ namespace SiberianSales2.Models
             BirthDate = birthDate;
             TxCommission = txCommission;
             BaseSalary = baseSalary;
-            Department = department;
-            Reseller = reseller;
+            DepartmentId = departmentId;
+            ResellerId = resellerId;
         }
 
         public void AddSalesProposals(SalesProposal sp)

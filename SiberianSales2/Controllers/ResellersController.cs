@@ -7,15 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
-using SiberianSales2.Services;
-using SiberianSales2.Models.ViewModels;
 
 namespace SiberianSales2.Controllers
 {
     public class ResellersController : Controller
     {
         private readonly SiberianSales2Context _context;
-        private readonly AddressService _addressService;
 
         public ResellersController(SiberianSales2Context context)
         {

@@ -9,12 +9,12 @@ namespace SiberianSales2.Models
     public class SalesProposal
     {
         public int Id { get; set; }
-        public Seller Seller { get; set; }
+        public int SellerId { get; set; }
         public DateTime ProposalDate { get; set; }
         public DateTime ProposalValidity { get; set; }
         public double FreightValue { get; set; }
         public ProposalStatus Status { get; set; }
-        public long Observations { get; set; }
+        public string Observations { get; set; }
         public double ProposalValue { get; set; }
         public double ProposalComissionValue { get; set; }
         public ICollection<ProposalItem> ProposalItems { get; set; } = new List<ProposalItem>();
@@ -49,10 +49,10 @@ namespace SiberianSales2.Models
         {
         }
 
-        public SalesProposal(int id, Seller seller, DateTime proposalDate, DateTime proposalValidity, double freightValue, ProposalStatus status, long observations)
+        public SalesProposal(int id, int sellerId, DateTime proposalDate, DateTime proposalValidity, double freightValue, ProposalStatus status, string observations)
         {
             Id = id;
-            Seller = seller;
+            SellerId = sellerId;
             ProposalDate = proposalDate;
             ProposalValidity = proposalValidity;
             FreightValue = freightValue;

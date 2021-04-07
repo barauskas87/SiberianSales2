@@ -21,6 +21,7 @@ namespace SiberianSales2.Models
         public string EAN { get; set; }
         public bool DiferentIcms { get; set; }
         public double DifIcmsTx { get; set; }
+        public int ProductTypeId { get; set; }
         public ICollection<Stock> ProductStock { get; set; } = new List<Stock>();
 
         public void AddProductStock (Stock ps)
@@ -32,7 +33,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Product(int id, string partNumber, string productName, string productDescription, string manufacturer, TaxNumber taxNumber, double weight, double height, double length, double width, int warrantyDays, string eAN, bool diferentIcms, double difIcmsTx)
+        public Product(int id, string partNumber, string productName, string productDescription, string manufacturer, TaxNumber taxNumber, double weight, double height, double length, double width, int warrantyDays, string eAN, bool diferentIcms, double difIcmsTx, int productTypeId)
         {
             Id = id;
             PartNumber = partNumber;
@@ -48,6 +49,7 @@ namespace SiberianSales2.Models
             EAN = eAN;
             DiferentIcms = diferentIcms;
             DifIcmsTx = difIcmsTx;
+            ProductTypeId = productTypeId;
         }
     }
 }

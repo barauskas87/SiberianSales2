@@ -10,6 +10,7 @@ namespace SiberianSales2.Models
         public int Id { get; set; }
         public double PoItemUnitValue { get; set; }
         public int PoItemQtde { get; set; }
+        public int PurchaseOrderId { get; set; }
 
         public double TotalValueItem ()
         {
@@ -20,11 +21,12 @@ namespace SiberianSales2.Models
         {
         }
 
-        public PurchaseOrderItem(int id, double poItemUnitValue, int poItemQtde)
+        public PurchaseOrderItem(int id, double poItemUnitValue, int poItemQtde, int purchaseOrderId)
         {
             Id = id;
             PoItemUnitValue = poItemUnitValue;
             PoItemQtde = poItemQtde;
+            PurchaseOrderId = purchaseOrderId;
         }
 
 
