@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SiberianSales2.Services
+namespace SiberianSales2.Services.Exceptions
 {
     [Serializable]
-    internal class DbConcurrencyException : Exception
+    internal class DbConcurrencyException : ApplicationException
     {
         public DbConcurrencyException()
         {

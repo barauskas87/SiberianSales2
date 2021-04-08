@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
+using SiberianSales2.Services.Exceptions;
 
 namespace SiberianSales2.Services
 {
@@ -17,6 +18,12 @@ namespace SiberianSales2.Services
             _context = context;
         }
 
+        public List<Seller> FindById()
+        {
+            return _context.Seller.ToList();
+        }
+        
+        
         public async Task<List<Seller>> FindAllAsync()
         {
             return await _context.Seller.ToListAsync();
@@ -41,7 +48,7 @@ namespace SiberianSales2.Services
                 _context.Seller.Remove(obj);
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateException e)
+            catch (DbUpdateException)
             {
                 throw new IntegrityException("Can't delete seller because he/she has sales");
             }
