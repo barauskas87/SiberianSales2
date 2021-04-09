@@ -22,6 +22,7 @@ namespace SiberianSales2.Models
         public double AditionalTaxes { get; set; }
         public double IcmsTx { get; set; }
         public bool LocalStockReseller { get; set; }
+        public Address Address { get; set; }
         public int AddressId { get; set; }
         public string AccountManager { get; set; }
         public string AccountManagerPhone { get; set; }

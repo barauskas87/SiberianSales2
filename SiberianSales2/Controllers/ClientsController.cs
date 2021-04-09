@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Client.ToListAsync());
+            var siberianSales2Context = _context.Client.Include(c => c.Address);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Clients/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var client = await _context.Client
+                .Include(c => c.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: Clients/Create
         public IActionResult Create()
         {
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientName,ClientFantasyName,ClientCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,Observation,OrderObservation,ActiveClient")] Client client)
+        public async Task<IActionResult> Create([Bind("Id,ClientName,ClientFantasyName,ClientCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,AddressId,Phone,Website,Observation,OrderObservation,ActiveClient,AccountSellerId")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", client.AddressId);
             return View(client);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", client.AddressId);
             return View(client);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientName,ClientFantasyName,ClientCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,Observation,OrderObservation,ActiveClient")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientName,ClientFantasyName,ClientCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,AddressId,Phone,Website,Observation,OrderObservation,ActiveClient,AccountSellerId")] Client client)
         {
             if (id != client.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", client.AddressId);
             return View(client);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var client = await _context.Client
+                .Include(c => c.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
             {

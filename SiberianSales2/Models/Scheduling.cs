@@ -9,7 +9,9 @@ namespace SiberianSales2.Models
     {
         public int Id { get; set; }
         public Seller Seller { get; set; }
+        public int SellerId { get; set; }
         public Client Client { get; set; }
+        public int ClientId { get; set; }
         public DateTime ScheduleDate { get; set; }
         public string Objetive { get; set; }
 
@@ -17,11 +19,11 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Scheduling(int id, Seller seller, Client client, DateTime scheduleDate, string objetive)
+        public Scheduling(int id, int sellerId, int clientId, DateTime scheduleDate, string objetive)
         {
             Id = id;
-            Seller = seller;
-            Client = client;
+            SellerId = sellerId;
+            ClientId = clientId;
             ScheduleDate = scheduleDate;
             Objetive = objetive;
         }

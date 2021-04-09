@@ -31,5 +31,10 @@ namespace SiberianSales2.Models
             State = state;
             PostalCode = postalCode;
         }
+
+        public override string ToString()
+        {
+            return AddressName + ", " + AddessNumber + ", " + City + " - " + State;
+        }
     }
 }

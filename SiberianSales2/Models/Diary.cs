@@ -8,7 +8,9 @@ namespace SiberianSales2.Models
     public class Diary
     {
         public int Id { get; set; }
+        public Seller Seller { get; set; }
         public int SellerId { get; set; }
+        public Client Client { get; set; }
         public int ClientId { get; set; }
         public DateTime RealizationDate { get; set; }
         public string Content { get; set; }

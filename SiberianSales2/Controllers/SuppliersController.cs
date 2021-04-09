@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Suppliers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Supplier.ToListAsync());
+            var siberianSales2Context = _context.Supplier.Include(s => s.Address);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Suppliers/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var supplier = await _context.Supplier
+                .Include(s => s.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (supplier == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: Suppliers/Create
         public IActionResult Create()
         {
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SupplierName,SupplierFantasyName,SupplierCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,TxComissionRetention,Observation,PriceValidityDays,AditionalTaxes,IcmsTx,LocalStockReseller,AccountManager,AccountManagerPhone,AccountManagerEmail,SiteLogin,SitePassword")] Supplier supplier)
+        public async Task<IActionResult> Create([Bind("Id,SupplierName,SupplierFantasyName,SupplierCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,TxComissionRetention,Observation,PriceValidityDays,AditionalTaxes,IcmsTx,LocalStockReseller,AddressId,AccountManager,AccountManagerPhone,AccountManagerEmail,SiteLogin,SitePassword")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
             return View(supplier);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
             return View(supplier);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SupplierName,SupplierFantasyName,SupplierCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,TxComissionRetention,Observation,PriceValidityDays,AditionalTaxes,IcmsTx,LocalStockReseller,AccountManager,AccountManagerPhone,AccountManagerEmail,SiteLogin,SitePassword")] Supplier supplier)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SupplierName,SupplierFantasyName,SupplierCnpj,StateInscription,StateInscriptionExemption,MunicipalInscription,Phone,Website,TxComissionRetention,Observation,PriceValidityDays,AditionalTaxes,IcmsTx,LocalStockReseller,AddressId,AccountManager,AccountManagerPhone,AccountManagerEmail,SiteLogin,SitePassword")] Supplier supplier)
         {
             if (id != supplier.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
             return View(supplier);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var supplier = await _context.Supplier
+                .Include(s => s.Address)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (supplier == null)
             {

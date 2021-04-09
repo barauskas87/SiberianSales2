@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Stocks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Stock.ToListAsync());
+            var siberianSales2Context = _context.Stock.Include(s => s.Product).Include(s => s.Supplier);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Stocks/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var stock = await _context.Stock
+                .Include(s => s.Product)
+                .Include(s => s.Supplier)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (stock == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: Stocks/Create
         public IActionResult Create()
         {
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
+            ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Id");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cost,UnitFreightCost,CostValidity")] Stock stock)
+        public async Task<IActionResult> Create([Bind("Id,ProductId,SupplierId,Cost,UnitFreightCost,CostValidity")] Stock stock)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", stock.ProductId);
+            ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Id", stock.SupplierId);
             return View(stock);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", stock.ProductId);
+            ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Id", stock.SupplierId);
             return View(stock);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cost,UnitFreightCost,CostValidity")] Stock stock)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,SupplierId,Cost,UnitFreightCost,CostValidity")] Stock stock)
         {
             if (id != stock.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", stock.ProductId);
+            ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Id", stock.SupplierId);
             return View(stock);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var stock = await _context.Stock
+                .Include(s => s.Product)
+                .Include(s => s.Supplier)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (stock == null)
             {

@@ -18,6 +18,7 @@ namespace SiberianSales2.Models
         public string Facebook { get; set; }
         public string Tweeter { get; set; }
         public DateTime BirthDate { get; set; }
+        public Client Client { get; set; }
         public int ClientId { get; set; }
 
         public Contact()

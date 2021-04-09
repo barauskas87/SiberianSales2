@@ -14,12 +14,14 @@ namespace SiberianSales2.Models
         public string StateInscription { get; set; }
         public bool StateInscriptionExemption { get; set; }
         public string MunicipalInscription { get; set; }
+        public Address Address { get; set; }
         public int AddressId { get; set; }
         public string Phone { get; set; }
         public string Website { get; set; }
         public string Observation { get; set; }
         public string OrderObservation { get; set; }
         public bool ActiveClient { get; set; }
+        public Seller Seller { get; set; }
         public int AccountSellerId { get; set; }
         public ICollection<Contact> Contacts { get; set; } = new List<Contact>();
         public ICollection<Diary> DiaryTasks { get; set; } = new List<Diary>();

@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Goals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Goals.ToListAsync());
+            var siberianSales2Context = _context.Goals.Include(g => g.Seller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Goals/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var goals = await _context.Goals
+                .Include(g => g.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (goals == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: Goals/Create
         public IActionResult Create()
         {
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BruteSales,LiquidSales,SalesCommission,Month,Year")] Goals goals)
+        public async Task<IActionResult> Create([Bind("Id,BruteSales,LiquidSales,SalesCommission,Month,Year,SellerId")] Goals goals)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", goals.SellerId);
             return View(goals);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", goals.SellerId);
             return View(goals);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BruteSales,LiquidSales,SalesCommission,Month,Year")] Goals goals)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,BruteSales,LiquidSales,SalesCommission,Month,Year,SellerId")] Goals goals)
         {
             if (id != goals.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", goals.SellerId);
             return View(goals);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var goals = await _context.Goals
+                .Include(g => g.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (goals == null)
             {

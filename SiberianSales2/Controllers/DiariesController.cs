@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Diaries
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Diary.ToListAsync());
+            var siberianSales2Context = _context.Diary.Include(d => d.Client).Include(d => d.Seller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Diaries/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var diary = await _context.Diary
+                .Include(d => d.Client)
+                .Include(d => d.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (diary == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: Diaries/Create
         public IActionResult Create()
         {
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RealizationDate,Content")] Diary diary)
+        public async Task<IActionResult> Create([Bind("Id,SellerId,ClientId,RealizationDate,Content")] Diary diary)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", diary.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", diary.SellerId);
             return View(diary);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", diary.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", diary.SellerId);
             return View(diary);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RealizationDate,Content")] Diary diary)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SellerId,ClientId,RealizationDate,Content")] Diary diary)
         {
             if (id != diary.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", diary.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", diary.SellerId);
             return View(diary);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var diary = await _context.Diary
+                .Include(d => d.Client)
+                .Include(d => d.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (diary == null)
             {

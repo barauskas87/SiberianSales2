@@ -18,6 +18,7 @@ namespace SiberianSales2.Models
         public string Website { get; set; }
         public double TxComissionRetention { get; set; }
         public string Observation { get; set; }
+        public Address Address { get; set; }
         public int AddressId { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
         public ICollection<SalesProposal> ResellerSalesProposals { get; set; } = new List<SalesProposal>();

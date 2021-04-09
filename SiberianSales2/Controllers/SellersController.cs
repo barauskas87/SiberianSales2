@@ -5,92 +5,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using SiberianSales2.Data;
 using SiberianSales2.Models;
-using SiberianSales2.Services;
-using SiberianSales2.Models.ViewModels;
-using SiberianSales2.Services.Exceptions;
-
 
 namespace SiberianSales2.Controllers
 {
     public class SellersController : Controller
     {
-        private readonly SellerService _sellerService;
-        private readonly DepartmentService _departmentService;
-        private readonly ResellerService _resellerService;
+        private readonly SiberianSales2Context _context;
 
-        public SellersController(SellerService sellerService, DepartmentService departmentService, ResellerService resellerService)
+        public SellersController(SiberianSales2Context context)
         {
-            _sellerService = sellerService;
-            _departmentService = departmentService;
-            _resellerService = resellerService;
+            _context = context;
         }
 
+        // GET: Sellers
         public async Task<IActionResult> Index()
         {
-            var list = await _sellerService.FindAllAsync();
-            return View(list);
+            var siberianSales2Context = _context.Seller.Include(s => s.Department).Include(s => s.Reseller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
-        public IActionResult Create()
-        {
-            var departments = _departmentService.FindAll();
-            var resellers = _resellerService.FindAll();
-            var viewModel = new SellerFormViewModel { Departments = departments, Resellers = resellers };
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Seller seller)
-        {
-            if (!ModelState.IsValid)
-            {
-                var departments = _departmentService.FindAll();
-                var resellers = _resellerService.FindAll();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments, Resellers = resellers };
-                return View(viewModel);
-            }
-            await _sellerService.InsertAsync(seller);
-            return RedirectToAction(nameof(Index));
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var obj = await _sellerService.FindByIdAsync(id.Value);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            return View(obj);
-        }
-
-        private object Error()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                await _sellerService.RemoveAsync(id);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (IntegrityException e)
-            {
-                return RedirectToAction(nameof(Error), new { message = e.Message });
-            }
-        }
-
+        // GET: Sellers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -98,57 +34,133 @@ namespace SiberianSales2.Controllers
                 return NotFound();
             }
 
-            var obj = await _sellerService.FindByIdAsync(id.Value);
-            if (obj == null)
+            var seller = await _context.Seller
+                .Include(s => s.Department)
+                .Include(s => s.Reseller)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (seller == null)
             {
                 return NotFound();
             }
-            return View(obj);
+
+            return View(seller);
         }
 
+        // GET: Sellers/Create
+        public IActionResult Create()
+        {
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "Name");
+            ViewData["ResellerId"] = new SelectList(_context.Reseller, "Id", "ResellerName");
+            return View();
+        }
+
+        // POST: Sellers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Name,Phone,Phone2,Email,Skype,Linkedin,Facebook,Tweeter,BirthDate,TxCommission,BaseSalary,DepartmentId,ResellerId")] Seller seller)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(seller);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "Name", seller.DepartmentId);
+            ViewData["ResellerId"] = new SelectList(_context.Reseller, "Id", "ResellerName", seller.ResellerId);
+            return View(seller);
+        }
+
+        // GET: Sellers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
+                return NotFound();
             }
 
-            var obj = await _sellerService.FindByIdAsync(id.Value);
-            if (obj == null)
+            var seller = await _context.Seller.FindAsync(id);
+            if (seller == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not found" });
+                return NotFound();
             }
-
-            List<Department> departments = _departmentService.FindAll();
-            List<Reseller> resellers = _resellerService.FindAll();
-            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departments, Resellers = resellers };
-            return View(viewModel);
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "Name", seller.DepartmentId);
+            ViewData["ResellerId"] = new SelectList(_context.Reseller, "Id", "ResellerName", seller.ResellerId);
+            return View(seller);
         }
 
+        // POST: Sellers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Seller seller)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Phone,Phone2,Email,Skype,Linkedin,Facebook,Tweeter,BirthDate,TxCommission,BaseSalary,DepartmentId,ResellerId")] Seller seller)
         {
-            if (!ModelState.IsValid)
-            {
-                var departments = _departmentService.FindAll();
-                var resellers = _resellerService.FindAll();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments, Resellers = resellers };
-                return View(viewModel);
-            }
             if (id != seller.Id)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
+                return NotFound();
             }
-            try
+
+            if (ModelState.IsValid)
             {
-                await _sellerService.UpdateAsync(seller);
+                try
+                {
+                    _context.Update(seller);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SellerExists(seller.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch (ApplicationException e)
+            ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "Name", seller.DepartmentId);
+            ViewData["ResellerId"] = new SelectList(_context.Reseller, "Id", "ResellerName", seller.ResellerId);
+            return View(seller);
+        }
+
+        // GET: Sellers/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = e.Message });
+                return NotFound();
             }
+
+            var seller = await _context.Seller
+                .Include(s => s.Department)
+                .Include(s => s.Reseller)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (seller == null)
+            {
+                return NotFound();
+            }
+
+            return View(seller);
+        }
+
+        // POST: Sellers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var seller = await _context.Seller.FindAsync(id);
+            _context.Seller.Remove(seller);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool SellerExists(int id)
+        {
+            return _context.Seller.Any(e => e.Id == id);
         }
     }
 }

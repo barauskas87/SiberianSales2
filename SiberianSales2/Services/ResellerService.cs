@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
 
@@ -18,7 +19,12 @@ namespace SiberianSales2.Services
 
         public List<Reseller> FindAll()
         {
-            return _context.Reseller.OrderBy(x => x.ResellerName).ToList();
+            return _context.Reseller.ToList();
+        }
+
+        public async Task<List<Reseller>> FindAllAsync()
+        {
+            return await _context.Reseller.ToListAsync();
         }
     }
 }

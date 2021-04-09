@@ -13,6 +13,7 @@ namespace SiberianSales2.Models
         public double SalesCommission { get; set; }
         public string Month { get; set; }
         public int Year { get; set; }
+        public Seller Seller { get; set; }
         public int SellerId { get; set; }
 
         public Goals()

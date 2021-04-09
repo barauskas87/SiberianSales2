@@ -55,6 +55,9 @@
                 @Html.DisplayNameFor(model => model.LocalStockReseller)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.AccountManager)
             </th>
             <th>
@@ -116,6 +119,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LocalStockReseller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountManager)

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SiberianSales2.Data;
 
 namespace SiberianSales2.Migrations
 {
     [DbContext(typeof(SiberianSales2Context))]
-    partial class SiberianSales2ContextModelSnapshot : ModelSnapshot
+    [Migration("20210409215153_More Corrections")]
+    partial class MoreCorrections
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

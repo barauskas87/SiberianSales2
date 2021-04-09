@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: Schedulings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Scheduling.ToListAsync());
+            var siberianSales2Context = _context.Scheduling.Include(s => s.Client).Include(s => s.Seller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: Schedulings/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var scheduling = await _context.Scheduling
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (scheduling == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: Schedulings/Create
         public IActionResult Create()
         {
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ScheduleDate,Objetive")] Scheduling scheduling)
+        public async Task<IActionResult> Create([Bind("Id,SellerId,ClientId,ScheduleDate,Objetive")] Scheduling scheduling)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
             return View(scheduling);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
             return View(scheduling);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ScheduleDate,Objetive")] Scheduling scheduling)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SellerId,ClientId,ScheduleDate,Objetive")] Scheduling scheduling)
         {
             if (id != scheduling.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
             return View(scheduling);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var scheduling = await _context.Scheduling
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (scheduling == null)
             {

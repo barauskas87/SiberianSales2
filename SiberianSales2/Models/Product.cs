@@ -21,6 +21,7 @@ namespace SiberianSales2.Models
         public string EAN { get; set; }
         public bool DiferentIcms { get; set; }
         public double DifIcmsTx { get; set; }
+        public ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
         public ICollection<Stock> ProductStock { get; set; } = new List<Stock>();
 
