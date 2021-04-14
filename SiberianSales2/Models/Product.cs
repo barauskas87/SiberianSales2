@@ -13,6 +13,7 @@ namespace SiberianSales2.Models
         public string ProductDescription { get; set; }
         public string Manufacturer { get; set; }
         public TaxNumber TaxNumber { get; set; }
+        public int TaxNumberId { get; set; }
         public double Weight { get; set; }
         public double Height { get; set; }
         public double Length { get; set; }
@@ -34,14 +35,14 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Product(int id, string partNumber, string productName, string productDescription, string manufacturer, TaxNumber taxNumber, double weight, double height, double length, double width, int warrantyDays, string eAN, bool diferentIcms, double difIcmsTx, int productTypeId)
+        public Product(int id, string partNumber, string productName, string productDescription, string manufacturer, int taxNumberId, double weight, double height, double length, double width, int warrantyDays, string eAN, bool diferentIcms, double difIcmsTx, int productTypeId)
         {
             Id = id;
             PartNumber = partNumber;
             ProductName = productName;
             ProductDescription = productDescription;
             Manufacturer = manufacturer;
-            TaxNumber = taxNumber;
+            TaxNumberId = taxNumberId;
             Weight = weight;
             Height = height;
             Length = length;

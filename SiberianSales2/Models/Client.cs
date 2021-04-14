@@ -22,7 +22,7 @@ namespace SiberianSales2.Models
         public string OrderObservation { get; set; }
         public bool ActiveClient { get; set; }
         public Seller Seller { get; set; }
-        public int AccountSellerId { get; set; }
+        public int SellerId { get; set; }
         public ICollection<Contact> Contacts { get; set; } = new List<Contact>();
         public ICollection<Diary> DiaryTasks { get; set; } = new List<Diary>();
         public ICollection<Scheduling> Schedules { get; set; } = new List<Scheduling>();
@@ -31,7 +31,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Client(int id, string clientName, string clientFantasyName, string clientCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, string observation, string orderObservation, bool activeClient, int accountSellerId, int addressId)
+        public Client(int id, string clientName, string clientFantasyName, string clientCnpj, string stateInscription, bool stateInscriptionExemption, string municipalInscription, string phone, string website, string observation, string orderObservation, bool activeClient, int sellerId, int addressId)
         {
             Id = id;
             ClientName = clientName;
@@ -46,7 +46,7 @@ namespace SiberianSales2.Models
             Observation = observation;
             OrderObservation = orderObservation;
             ActiveClient = activeClient;
-            AccountSellerId = accountSellerId;
+            SellerId = sellerId;
         }
     }
 }

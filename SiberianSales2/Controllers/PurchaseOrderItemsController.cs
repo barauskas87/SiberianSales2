@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: PurchaseOrderItems
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PurchaseOrderItem.ToListAsync());
+            var siberianSales2Context = _context.PurchaseOrderItem.Include(p => p.Product).Include(p => p.PurchaseOrder);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: PurchaseOrderItems/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var purchaseOrderItem = await _context.PurchaseOrderItem
+                .Include(p => p.Product)
+                .Include(p => p.PurchaseOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (purchaseOrderItem == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: PurchaseOrderItems/Create
         public IActionResult Create()
         {
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PoItemUnitValue,PoItemQtde")] PurchaseOrderItem purchaseOrderItem)
+        public async Task<IActionResult> Create([Bind("Id,ProductId,PoItemUnitValue,PoItemQtde,PurchaseOrderId")] PurchaseOrderItem purchaseOrderItem)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PoItemUnitValue,PoItemQtde")] PurchaseOrderItem purchaseOrderItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,PoItemUnitValue,PoItemQtde,PurchaseOrderId")] PurchaseOrderItem purchaseOrderItem)
         {
             if (id != purchaseOrderItem.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var purchaseOrderItem = await _context.PurchaseOrderItem
+                .Include(p => p.Product)
+                .Include(p => p.PurchaseOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (purchaseOrderItem == null)
             {

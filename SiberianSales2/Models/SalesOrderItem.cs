@@ -11,6 +11,7 @@ namespace SiberianSales2.Models
         public double SoItemUnitValue { get; set; }
         public double SoItemUnitCost { get; set; }
         public int SoItemQtde { get; set; }
+        public SalesOrder SalesOrder { get; set; }
         public int SalesOrderId { get; set; }
 
         public double TotalValueProduct ()

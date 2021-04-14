@@ -12,7 +12,7 @@ namespace SiberianSales2.Models
         public string Phone { get; set; }
         public int Extension { get; set; }
         public string Email { get; set; }
-        public int Whatsapp { get; set; }
+        public string Whatsapp { get; set; }
         public string Skype { get; set; }
         public string Linkedin { get; set; }
         public string Facebook { get; set; }
@@ -25,7 +25,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Contact(int id, string name, string phone, int extension, string email, int whatsapp, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, int clientId)
+        public Contact(int id, string name, string phone, int extension, string email, string whatsapp, string skype, string linkedin, string facebook, string tweeter, DateTime birthDate, int clientId)
         {
             Id = id;
             Name = name;

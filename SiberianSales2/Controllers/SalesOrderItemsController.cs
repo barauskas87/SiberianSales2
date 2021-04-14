@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: SalesOrderItems
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SalesOrderItem.ToListAsync());
+            var siberianSales2Context = _context.SalesOrderItem.Include(s => s.SalesOrder);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: SalesOrderItems/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var salesOrderItem = await _context.SalesOrderItem
+                .Include(s => s.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesOrderItem == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: SalesOrderItems/Create
         public IActionResult Create()
         {
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SoItemUnitValue,SoItemUnitCost,SoItemQtde")] SalesOrderItem salesOrderItem)
+        public async Task<IActionResult> Create([Bind("Id,SoItemUnitValue,SoItemUnitCost,SoItemQtde,SalesOrderId")] SalesOrderItem salesOrderItem)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", salesOrderItem.SalesOrderId);
             return View(salesOrderItem);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", salesOrderItem.SalesOrderId);
             return View(salesOrderItem);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SoItemUnitValue,SoItemUnitCost,SoItemQtde")] SalesOrderItem salesOrderItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SoItemUnitValue,SoItemUnitCost,SoItemQtde,SalesOrderId")] SalesOrderItem salesOrderItem)
         {
             if (id != salesOrderItem.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", salesOrderItem.SalesOrderId);
             return View(salesOrderItem);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var salesOrderItem = await _context.SalesOrderItem
+                .Include(s => s.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesOrderItem == null)
             {

@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: PaymentDuplicates
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PaymentDuplicate.ToListAsync());
+            var siberianSales2Context = _context.PaymentDuplicate.Include(p => p.SalesOrder);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: PaymentDuplicates/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var paymentDuplicate = await _context.PaymentDuplicate
+                .Include(p => p.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (paymentDuplicate == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: PaymentDuplicates/Create
         public IActionResult Create()
         {
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DuplicateValue,PayDate")] PaymentDuplicate paymentDuplicate)
+        public async Task<IActionResult> Create([Bind("Id,DuplicateValue,PayDate,SalesOrderId")] PaymentDuplicate paymentDuplicate)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", paymentDuplicate.SalesOrderId);
             return View(paymentDuplicate);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", paymentDuplicate.SalesOrderId);
             return View(paymentDuplicate);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DuplicateValue,PayDate")] PaymentDuplicate paymentDuplicate)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DuplicateValue,PayDate,SalesOrderId")] PaymentDuplicate paymentDuplicate)
         {
             if (id != paymentDuplicate.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", paymentDuplicate.SalesOrderId);
             return View(paymentDuplicate);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var paymentDuplicate = await _context.PaymentDuplicate
+                .Include(p => p.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (paymentDuplicate == null)
             {

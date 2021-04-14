@@ -9,7 +9,10 @@ namespace SiberianSales2.Models
     public class SalesOrder
     {
         public int Id { get; set; }
+        public Seller Seller { get; set; }
         public int SellerId { get; set; }
+        public Client Client { get; set; }
+        public int ClientId { get; set; }
         public string Reference { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime SendingDate { get; set; }

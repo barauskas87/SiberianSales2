@@ -48,7 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: Suppliers/Create
         public IActionResult Create()
         {
-            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id");
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "AddressName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "AddressName", supplier.AddressId);
             return View(supplier);
         }
 
@@ -82,7 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "AddressName", supplier.AddressId);
             return View(supplier);
         }
 
@@ -118,7 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "Id", supplier.AddressId);
+            ViewData["AddressId"] = new SelectList(_context.Address, "Id", "AddressName", supplier.AddressId);
             return View(supplier);
         }
 

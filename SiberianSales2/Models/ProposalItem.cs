@@ -11,6 +11,7 @@ namespace SiberianSales2.Models
         public double ProposalItemUnitValue { get; set; }
         public double ProposalItemUnitCost { get; set; }
         public int ProposalItemQtd { get; set; }
+        public SalesProposal SalesProposal { get; set; }
         public int SalesProposalId { get; set; }
 
         public double ProposalItemTotalValue()

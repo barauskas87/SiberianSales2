@@ -49,8 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: Schedulings/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
-            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientName");
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
-            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientName", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", scheduling.SellerId);
             return View(scheduling);
         }
 
@@ -85,8 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
-            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientName", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", scheduling.SellerId);
             return View(scheduling);
         }
 
@@ -122,8 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", scheduling.ClientId);
-            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Id", scheduling.SellerId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientName", scheduling.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", scheduling.SellerId);
             return View(scheduling);
         }
 

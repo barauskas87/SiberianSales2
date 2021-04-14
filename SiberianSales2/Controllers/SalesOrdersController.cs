@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: SalesOrders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SalesOrder.ToListAsync());
+            var siberianSales2Context = _context.SalesOrder.Include(s => s.Client).Include(s => s.Seller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: SalesOrders/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var salesOrder = await _context.SalesOrder
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesOrder == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: SalesOrders/Create
         public IActionResult Create()
         {
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName");
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Reference,OrderDate,SendingDate,FiscalCupom,TrackingId,FreightTypeId,FreightValue,Observation,ResellerFiscalCupom,ResellerFiscalCupomDate,Status,SalesOrderTotalValue,SalesOrderComission")] SalesOrder salesOrder)
+        public async Task<IActionResult> Create([Bind("Id,SellerId,ClientId,Reference,OrderDate,SendingDate,FiscalCupom,TrackingId,FreightTypeId,FreightValue,Observation,ResellerFiscalCupom,ResellerFiscalCupomDate,Status,SalesOrderTotalValue,SalesOrderComission")] SalesOrder salesOrder)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesOrder.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesOrder.SellerId);
             return View(salesOrder);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesOrder.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesOrder.SellerId);
             return View(salesOrder);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Reference,OrderDate,SendingDate,FiscalCupom,TrackingId,FreightTypeId,FreightValue,Observation,ResellerFiscalCupom,ResellerFiscalCupomDate,Status,SalesOrderTotalValue,SalesOrderComission")] SalesOrder salesOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SellerId,ClientId,Reference,OrderDate,SendingDate,FiscalCupom,TrackingId,FreightTypeId,FreightValue,Observation,ResellerFiscalCupom,ResellerFiscalCupomDate,Status,SalesOrderTotalValue,SalesOrderComission")] SalesOrder salesOrder)
         {
             if (id != salesOrder.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesOrder.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesOrder.SellerId);
             return View(salesOrder);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var salesOrder = await _context.SalesOrder
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesOrder == null)
             {

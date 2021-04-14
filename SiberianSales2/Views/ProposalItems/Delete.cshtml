@@ -29,6 +29,12 @@
         <dd>
             @Html.DisplayFor(model => model.ProposalItemQtd)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesProposal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesProposal.Id)
+        </dd>
     </dl>
     
     <form asp-action="Delete">

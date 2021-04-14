@@ -14,13 +14,13 @@ namespace SiberianSales2.Models
         public string District { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         public Address()
         {
         }
 
-        public Address(int id, string addressName, string addessNumber, string addressComplement, string district, string city, string state, int postalCode)
+        public Address(int id, string addressName, string addessNumber, string addressComplement, string district, string city, string state, string postalCode)
         {
             Id = id;
             AddressName = addressName;

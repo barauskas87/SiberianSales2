@@ -15,11 +15,10 @@ namespace SiberianSales2.Models
         {
         }
 
-        public ProductType(int id, string typeName, ICollection<Product> products)
+        public ProductType(int id, string typeName)
         {
             Id = id;
             TypeName = typeName;
-            Products = products;
         }
     }
 }

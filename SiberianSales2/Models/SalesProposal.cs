@@ -9,7 +9,10 @@ namespace SiberianSales2.Models
     public class SalesProposal
     {
         public int Id { get; set; }
+        public Seller Seller { get; set; }
         public int SellerId { get; set; }
+        public Client Client { get; set; }
+        public int ClientId { get; set; }
         public DateTime ProposalDate { get; set; }
         public DateTime ProposalValidity { get; set; }
         public double FreightValue { get; set; }
@@ -18,6 +21,7 @@ namespace SiberianSales2.Models
         public double ProposalValue { get; set; }
         public double ProposalComissionValue { get; set; }
         public ICollection<ProposalItem> ProposalItems { get; set; } = new List<ProposalItem>();
+
 
         public void AddProposalItem(ProposalItem spi)
         {

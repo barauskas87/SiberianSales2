@@ -48,7 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "Id");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "TypeName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "Id", product.ProductTypeId);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "TypeName", product.ProductTypeId);
             return View(product);
         }
 
@@ -82,7 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "Id", product.ProductTypeId);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "TypeName", product.ProductTypeId);
             return View(product);
         }
 
@@ -118,7 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "Id", product.ProductTypeId);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "Id", "TypeName", product.ProductTypeId);
             return View(product);
         }
 

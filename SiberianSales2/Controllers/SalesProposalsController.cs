@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: SalesProposals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SalesProposal.ToListAsync());
+            var siberianSales2Context = _context.SalesProposal.Include(s => s.Client).Include(s => s.Seller);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: SalesProposals/Details/5
@@ -34,6 +35,8 @@ namespace SiberianSales2.Controllers
             }
 
             var salesProposal = await _context.SalesProposal
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesProposal == null)
             {
@@ -46,6 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: SalesProposals/Create
         public IActionResult Create()
         {
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName");
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
+        public async Task<IActionResult> Create([Bind("Id,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
 
@@ -78,6 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
 
@@ -86,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
         {
             if (id != salesProposal.Id)
             {
@@ -113,6 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
 
@@ -125,6 +136,8 @@ namespace SiberianSales2.Controllers
             }
 
             var salesProposal = await _context.SalesProposal
+                .Include(s => s.Client)
+                .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesProposal == null)
             {
