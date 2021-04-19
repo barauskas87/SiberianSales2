@@ -20,7 +20,9 @@ namespace SiberianSales2.Data
         {
             if (_context.Department.Any() || 
                 _context.Seller.Any() ||
-                _context.SalesOrder.Any())
+                _context.SalesOrder.Any() ||
+                _context.Address.Any() ||
+                _context.ProductType.Any())
             {
                 return; //DB has been seeded
             }

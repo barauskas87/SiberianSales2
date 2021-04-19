@@ -12,16 +12,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SoItemUnitValue)
+            @Html.DisplayNameFor(model => model.SalesOrder)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SoItemUnitValue)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SoItemUnitCost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SoItemUnitCost)
+            @Html.DisplayFor(model => model.SalesOrder.Reference)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.SoItemQtde)
@@ -30,10 +24,16 @@
             @Html.DisplayFor(model => model.SoItemQtde)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SalesOrder)
+            @Html.DisplayNameFor(model => model.SoItemUnitCost)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.SalesOrder.Id)
+            @Html.DisplayFor(model => model.SoItemUnitCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoItemUnitValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoItemUnitValue)
         </dd>
     </dl>
     

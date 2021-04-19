@@ -12,6 +12,7 @@ namespace SiberianSales2.Models
         public int ProductId { get; set; }
         public Supplier Supplier { get; set; }
         public int SupplierId { get; set; }
+        public int Quantity { get; set; }
         public double Cost { get; set; }
         public double UnitFreightCost { get; set; }
         public int CostValidity { get; set; }
@@ -20,11 +21,12 @@ namespace SiberianSales2.Models
         {
         }
 
-        public Stock(int id, int productId, int supplierId, double cost, double unitFreightCost, int costValidity)
+        public Stock(int id, int productId, int supplierId, int quantity, double cost, double unitFreightCost, int costValidity)
         {
             Id = id;
             ProductId = productId;
             SupplierId = supplierId;
+            Quantity = quantity;
             Cost = cost;
             UnitFreightCost = unitFreightCost;
             CostValidity = costValidity;

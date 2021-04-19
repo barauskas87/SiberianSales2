@@ -11,6 +11,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.SalesOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SalesOrder.Reference)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.DuplicateValue)
         </dt>
         <dd>
@@ -21,12 +27,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.PayDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SalesOrder)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SalesOrder.Id)
         </dd>
     </dl>
 </div>

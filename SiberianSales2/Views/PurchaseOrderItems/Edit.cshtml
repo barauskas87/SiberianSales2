@@ -1,7 +1,7 @@
 ﻿@model SiberianSales2.Models.PurchaseOrderItem
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit PO Item";
 }
 
 <h2>Edit</h2>
@@ -14,14 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
+                <label asp-for="PurchaseOrderId" class="control-label"></label>
+                <select asp-for="PurchaseOrderId" class="form-control" asp-items="ViewBag.PurchaseOrderId"></select>
+                <span asp-validation-for="PurchaseOrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
                 <select asp-for="ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
                 <span asp-validation-for="ProductId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PoItemUnitValue" class="control-label"></label>
-                <input asp-for="PoItemUnitValue" class="form-control" />
-                <span asp-validation-for="PoItemUnitValue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PoItemQtde" class="control-label"></label>
@@ -29,9 +29,9 @@
                 <span asp-validation-for="PoItemQtde" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PurchaseOrderId" class="control-label"></label>
-                <select asp-for="PurchaseOrderId" class="form-control" asp-items="ViewBag.PurchaseOrderId"></select>
-                <span asp-validation-for="PurchaseOrderId" class="text-danger"></span>
+                <label asp-for="PoItemUnitValue" class="control-label"></label>
+                <input asp-for="PoItemUnitValue" class="form-control" />
+                <span asp-validation-for="PoItemUnitValue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

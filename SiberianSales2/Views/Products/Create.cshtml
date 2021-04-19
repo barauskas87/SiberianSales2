@@ -1,7 +1,7 @@
 ﻿@model SiberianSales2.Models.Product
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a Product";
 }
 
 <h2>Create</h2>
@@ -31,6 +31,10 @@
                 <label asp-for="Manufacturer" class="control-label"></label>
                 <input asp-for="Manufacturer" class="form-control" />
                 <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxNumberId" class="control-label"></label>
+                <select asp-for="TaxNumberId" class ="form-control" asp-items="ViewBag.TaxNumberId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Weight" class="control-label"></label>

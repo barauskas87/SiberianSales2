@@ -48,7 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: ProposalItems/Create
         public IActionResult Create()
         {
-            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Id");
+            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Id", proposalItem.SalesProposalId);
+            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
 
@@ -82,7 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Id", proposalItem.SalesProposalId);
+            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
 
@@ -118,7 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Id", proposalItem.SalesProposalId);
+            ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
 

@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<SiberianSales2.Models.Client>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Client Directory";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-default">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -22,31 +22,10 @@
                 @Html.DisplayNameFor(model => model.ClientCnpj)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StateInscription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StateInscriptionExemption)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MunicipalInscription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Website)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderObservation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiveClient)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Seller)
@@ -66,35 +45,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ClientCnpj)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StateInscription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StateInscriptionExemption)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MunicipalInscription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address.Id)
-            </td>
-            <td>
+             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Website)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderObservation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ActiveClient)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seller.Id)
+             <td>
+                @Html.DisplayFor(modelItem => item.Seller.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

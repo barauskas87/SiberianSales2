@@ -8,7 +8,10 @@ namespace SiberianSales2.Models
 {
     public class SalesProposal
     {
+        internal readonly object ProposalStatus;
+
         public int Id { get; set; }
+        public string Reference { get; set; }
         public Seller Seller { get; set; }
         public int SellerId { get; set; }
         public Client Client { get; set; }
@@ -53,9 +56,10 @@ namespace SiberianSales2.Models
         {
         }
 
-        public SalesProposal(int id, int sellerId, DateTime proposalDate, DateTime proposalValidity, double freightValue, ProposalStatus status, string observations)
+        public SalesProposal(int id, string reference, int sellerId, DateTime proposalDate, DateTime proposalValidity, double freightValue, ProposalStatus status, string observations)
         {
             Id = id;
+            Reference = reference;
             SellerId = sellerId;
             ProposalDate = proposalDate;
             ProposalValidity = proposalValidity;

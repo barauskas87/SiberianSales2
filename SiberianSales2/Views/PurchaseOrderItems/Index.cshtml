@@ -1,46 +1,47 @@
 ﻿@model IEnumerable<SiberianSales2.Models.PurchaseOrderItem>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Purchase Order Item Directory";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-default">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                @Html.DisplayNameFor(model => model.PurchaseOrder)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PoItemUnitValue)
+                @Html.DisplayNameFor(model => model.Product)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PoItemQtde)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PurchaseOrder)
+                @Html.DisplayNameFor(model => model.PoItemUnitValue)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.Id)
+                @Html.DisplayFor(modelItem => item.PurchaseOrder.PoReference)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PoItemUnitValue)
+                @Html.DisplayFor(modelItem => item.Product.PartNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PoItemQtde)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PurchaseOrder.Id)
+                @Html.DisplayFor(modelItem => item.PoItemUnitValue)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -48,6 +49,6 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<SiberianSales2.Models.Goals>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Goals List";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-default">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.BruteSales)
             </th>
@@ -27,39 +30,37 @@
             <th>
                 @Html.DisplayNameFor(model => model.Year)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Seller)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BruteSales)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LiquidSales)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SalesCommission)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Month)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seller.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BruteSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LiquidSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesCommission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

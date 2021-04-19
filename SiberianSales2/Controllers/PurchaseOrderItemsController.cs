@@ -49,8 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: PurchaseOrderItems/Create
         public IActionResult Create()
         {
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id");
-            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber");
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "PoReference");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
-            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "PoReference", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 
@@ -85,8 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
-            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "PoReference", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 
@@ -122,8 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Id", purchaseOrderItem.ProductId);
-            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "Id", purchaseOrderItem.PurchaseOrderId);
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", purchaseOrderItem.ProductId);
+            ViewData["PurchaseOrderId"] = new SelectList(_context.PurchaseOrder, "Id", "PoReference", purchaseOrderItem.PurchaseOrderId);
             return View(purchaseOrderItem);
         }
 

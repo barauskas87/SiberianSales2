@@ -13,12 +13,17 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Reference" class="control-label"></label>
+                <input asp-for="Reference" class="form-control" />
+                <span asp-validation-for="Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="SellerId" class="control-label"></label>
-                <select asp-for="SellerId" class ="form-control" asp-items="ViewBag.SellerId"></select>
+                <select asp-for="SellerId" class="form-control" asp-items="ViewBag.SellerId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ClientId" class="control-label"></label>
-                <select asp-for="ClientId" class ="form-control" asp-items="ViewBag.ClientId"></select>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ProposalDate" class="control-label"></label>
@@ -36,16 +41,6 @@
                 <span asp-validation-for="FreightValue" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Observations" class="control-label"></label>
-                <input asp-for="Observations" class="form-control" />
-                <span asp-validation-for="Observations" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="ProposalValue" class="control-label"></label>
                 <input asp-for="ProposalValue" class="form-control" />
                 <span asp-validation-for="ProposalValue" class="text-danger"></span>
@@ -54,6 +49,16 @@
                 <label asp-for="ProposalComissionValue" class="control-label"></label>
                 <input asp-for="ProposalComissionValue" class="form-control" />
                 <span asp-validation-for="ProposalComissionValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observations" class="control-label"></label>
+                <input asp-for="Observations" class="form-control" />
+                <span asp-validation-for="Observations" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

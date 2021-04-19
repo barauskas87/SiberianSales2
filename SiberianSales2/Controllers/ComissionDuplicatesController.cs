@@ -48,7 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: ComissionDuplicates/Create
         public IActionResult Create()
         {
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id");
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 
@@ -82,7 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 
@@ -118,7 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 

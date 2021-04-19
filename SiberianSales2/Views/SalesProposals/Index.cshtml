@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<SiberianSales2.Models.SalesProposal>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Sales Proposal Directory";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-default">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reference)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Seller)
             </th>
@@ -25,59 +28,39 @@
                 @Html.DisplayNameFor(model => model.ProposalValidity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FreightValue)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observations)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProposalValue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProposalComissionValue)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seller.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalValidity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FreightValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observations)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProposalComissionValue)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.ClientFantasyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProposalValidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

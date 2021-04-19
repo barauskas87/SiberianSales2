@@ -36,6 +36,12 @@
             @Html.DisplayFor(model => model.Manufacturer)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.TaxNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaxNumber.Ncm)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Weight)
         </dt>
         <dd>
@@ -87,7 +93,7 @@
             @Html.DisplayNameFor(model => model.ProductType)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductType.Id)
+            @Html.DisplayFor(model => model.ProductType.TypeName)
         </dd>
     </dl>
     

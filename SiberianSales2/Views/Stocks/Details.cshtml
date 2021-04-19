@@ -14,13 +14,19 @@
             @Html.DisplayNameFor(model => model.Product)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Product.Id)
+            @Html.DisplayFor(model => model.Product.PartNumber)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Supplier)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Supplier.Id)
+            @Html.DisplayFor(model => model.Supplier.SupplierFantasyName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Cost)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,6 @@ namespace SiberianSales2.Data
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<TaxNumber> TaxNumber { get; set; }
         public DbSet<SiberianSales2.Models.PaymentTerms> PaymentTerms { get; set; }
-
+        public IEnumerable ProposalStatus { get; internal set; }
     }
 }

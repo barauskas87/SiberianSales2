@@ -1,10 +1,10 @@
 ﻿@model SiberianSales2.Models.PaymentDuplicate
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a payment duplicate";
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Title"]</h2>
 
 <h4>PaymentDuplicate</h4>
 <hr />
@@ -12,6 +12,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SalesOrderId" class="control-label"></label>
+                <select asp-for="SalesOrderId" class="form-control" asp-items="ViewBag.SalesOrderId"></select>
+            </div>
             <div class="form-group">
                 <label asp-for="DuplicateValue" class="control-label"></label>
                 <input asp-for="DuplicateValue" class="form-control" />
@@ -21,10 +25,6 @@
                 <label asp-for="PayDate" class="control-label"></label>
                 <input asp-for="PayDate" class="form-control" />
                 <span asp-validation-for="PayDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SalesOrderId" class="control-label"></label>
-                <select asp-for="SalesOrderId" class ="form-control" asp-items="ViewBag.SalesOrderId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

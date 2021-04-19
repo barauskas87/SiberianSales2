@@ -11,16 +11,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Reference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reference)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Seller)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Seller.Id)
+            @Html.DisplayFor(model => model.Seller.Name)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Client)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Client.Id)
+            @Html.DisplayFor(model => model.Client.ClientFantasyName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProposalDate)
@@ -41,18 +47,6 @@
             @Html.DisplayFor(model => model.FreightValue)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Observations)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Observations)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.ProposalValue)
         </dt>
         <dd>
@@ -63,6 +57,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProposalComissionValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observations)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observations)
         </dd>
     </dl>
 </div>

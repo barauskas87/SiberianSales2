@@ -1,7 +1,7 @@
 ﻿@model SiberianSales2.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Product Details";
 }
 
 <h2>Details</h2>
@@ -33,6 +33,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TaxNumber.Ncm)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Weight)
@@ -86,7 +92,7 @@
             @Html.DisplayNameFor(model => model.ProductType)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductType.Id)
+            @Html.DisplayFor(model => model.ProductType.TypeName)
         </dd>
     </dl>
 </div>
