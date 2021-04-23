@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +51,25 @@ namespace SiberianSales2
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
+            var ptBR = new CultureInfo("pt-BR");
+            ptBR.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            ptBR.DateTimeFormat.ShortTimePattern = "HH:mm";
+            ptBR.NumberFormat.NumberDecimalDigits = 2;
+            ptBR.NumberFormat.NumberDecimalSeparator = ",";
+            ptBR.NumberFormat.CurrencyDecimalDigits = 2;
+            ptBR.NumberFormat.CurrencyDecimalSeparator = ",";
+
+            var enUS = new CultureInfo("en-US");
+
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR, enUS },
+                SupportedUICultures = new List<CultureInfo> { ptBR, enUS }
+            };
+
+            app.UseRequestLocalization(localizationOptions);
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

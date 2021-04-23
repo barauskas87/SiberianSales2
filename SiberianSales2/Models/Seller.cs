@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace SiberianSales2.Models
@@ -8,20 +10,57 @@ namespace SiberianSales2.Models
     public class Seller
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Telefone")]
         public string Phone { get; set; }
+
+        [Display(Name = "Telefone 2")]
         public string Phone2 { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
         public string Skype { get; set; }
+
         public string Linkedin { get; set; }
+
         public string Facebook { get; set; }
+
         public string Tweeter { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Aniversário")]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Taxa de Comissão")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double TxCommission { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]
+        [Display(Name = "Salário Base")]
+        [DataType(DataType.Currency)]
         public double BaseSalary { get; set; }
+
+        [Display(Name = "Departamento")]
         public Department Department { get; set; }
+
+        [Display(Name = "Departamento")]
         public int DepartmentId { get; set; }
+
+        [Display(Name = "Revenda")]
         public Reseller Reseller { get; set; }
+
+        [Display(Name = "Revenda")]
         public int ResellerId { get; set; }
         public ICollection<Diary> Diaries { get; set; } = new List<Diary>();
         public ICollection<Goals> SellerGoals { get; set; } = new List<Goals>();

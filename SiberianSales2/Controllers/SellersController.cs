@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
+using SiberianSales2.Models.ViewModels;
 
 namespace SiberianSales2.Controllers
 {
@@ -31,7 +33,7 @@ namespace SiberianSales2.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof (Error), new { message = "Id not provided" });
             }
 
             var seller = await _context.Seller
@@ -40,7 +42,7 @@ namespace SiberianSales2.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (seller == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Seller not found" });
             }
 
             return View(seller);
@@ -77,13 +79,13 @@ namespace SiberianSales2.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" }); 
             }
 
             var seller = await _context.Seller.FindAsync(id);
             if (seller == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Seller not found" });
             }
             ViewData["DepartmentId"] = new SelectList(_context.Department, "Id", "Name", seller.DepartmentId);
             ViewData["ResellerId"] = new SelectList(_context.Reseller, "Id", "ResellerName", seller.ResellerId);
@@ -99,7 +101,7 @@ namespace SiberianSales2.Controllers
         {
             if (id != seller.Id)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Selected ID does not match with the ID edited" });
             }
 
             if (ModelState.IsValid)
@@ -113,8 +115,7 @@ namespace SiberianSales2.Controllers
                 {
                     if (!SellerExists(seller.Id))
                     {
-                        return NotFound();
-                    }
+                        return RedirectToAction(nameof(Error), new { message = "Seller do not exist" });                   }
                     else
                     {
                         throw;
@@ -132,7 +133,7 @@ namespace SiberianSales2.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Seller not found" });
             }
 
             var seller = await _context.Seller
@@ -141,7 +142,7 @@ namespace SiberianSales2.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (seller == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Seller do not exist" });
             }
 
             return View(seller);
@@ -161,6 +162,16 @@ namespace SiberianSales2.Controllers
         private bool SellerExists(int id)
         {
             return _context.Seller.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var ViewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(ViewModel);
         }
     }
 }
