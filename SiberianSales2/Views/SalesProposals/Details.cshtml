@@ -47,6 +47,18 @@
             @Html.DisplayFor(model => model.FreightValue)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ProposalStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProposalStatus.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observations)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observations)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.ProposalValue)
         </dt>
         <dd>
@@ -57,18 +69,6 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProposalComissionValue)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Observations)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Observations)
         </dd>
     </dl>
 </div>

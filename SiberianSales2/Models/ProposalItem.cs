@@ -8,6 +8,8 @@ namespace SiberianSales2.Models
     public class ProposalItem
     {
         public int Id { get; set; }
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
         public double ProposalItemUnitValue { get; set; }
         public double ProposalItemUnitCost { get; set; }
         public int ProposalItemQtd { get; set; }
@@ -33,10 +35,12 @@ namespace SiberianSales2.Models
         {
         }
 
-        public ProposalItem(int id, double proposalItemUnitValue, int proposalItemQtd, int salesProposalId)
+        public ProposalItem(int id, int productId, double proposalItemUnitValue, double proposalItemUnitCost, int proposalItemQtd, int salesProposalId)
         {
             Id = id;
+            ProductId = productId;
             ProposalItemUnitValue = proposalItemUnitValue;
+            ProposalItemUnitCost = proposalItemUnitCost;
             ProposalItemQtd = proposalItemQtd;
             SalesProposalId = salesProposalId;
         }

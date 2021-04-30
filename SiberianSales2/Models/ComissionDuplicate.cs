@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SiberianSales2.Models.Enums;
 
 namespace SiberianSales2.Models
 {
@@ -12,7 +11,8 @@ namespace SiberianSales2.Models
         public int Id { get; set; }
         public double ComissionDuplicateValue { get; set; }
         public DateTime AvaliableDate { get; set; }
-        public ComissionStatus Status { get; set; }
+        public ComissionStatus ComissionStatus { get; set; }
+        public int ComissionStatusId { get; set; }
         public SalesOrder SalesOrder { get; set; }
         public int SalesOrderId { get; set; }
 
@@ -20,12 +20,12 @@ namespace SiberianSales2.Models
         {
         }
 
-        public ComissionDuplicate(int id, double comissionDuplicateValue, DateTime avaliableDate, ComissionStatus status, int salesOrderId)
+        public ComissionDuplicate(int id, double comissionDuplicateValue, DateTime avaliableDate, int comissionStatusId, int salesOrderId)
         {
             Id = id;
             ComissionDuplicateValue = comissionDuplicateValue;
             AvaliableDate = avaliableDate;
-            Status = status;
+            ComissionStatusId = comissionStatusId;
             SalesOrderId = salesOrderId;
         }
 

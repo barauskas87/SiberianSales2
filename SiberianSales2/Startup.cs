@@ -43,9 +43,8 @@ namespace SiberianSales2
                     options.UseMySql(Configuration.GetConnectionString("SiberianSales2Context"), builder => builder.MigrationsAssembly("SiberianSales2")));
 
             services.AddScoped<SeedingService>();
-            services.AddScoped<SellerService>();
-            services.AddScoped<DepartmentService>();
-            services.AddScoped<ResellerService>();
+            services.AddScoped<SalesProposalService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -90,15 +90,29 @@ namespace SiberianSales2.Migrations
 
                     b.Property<double>("ComissionDuplicateValue");
 
+                    b.Property<int>("ComissionStatusId");
+
                     b.Property<int>("SalesOrderId");
 
-                    b.Property<int>("Status");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ComissionStatusId");
 
                     b.HasIndex("SalesOrderId");
 
                     b.ToTable("ComissionDuplicate");
+                });
+
+            modelBuilder.Entity("SiberianSales2.Models.ComissionStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ComissionStatus");
                 });
 
             modelBuilder.Entity("SiberianSales2.Models.Contact", b =>
@@ -314,6 +328,8 @@ namespace SiberianSales2.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("ProductId");
+
                     b.Property<int>("ProposalItemQtd");
 
                     b.Property<double>("ProposalItemUnitCost");
@@ -324,9 +340,23 @@ namespace SiberianSales2.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.HasIndex("SalesProposalId");
 
                     b.ToTable("ProposalItem");
+                });
+
+            modelBuilder.Entity("SiberianSales2.Models.ProposalStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProposalStatus");
                 });
 
             modelBuilder.Entity("SiberianSales2.Models.PurchaseOrder", b =>
@@ -346,11 +376,13 @@ namespace SiberianSales2.Migrations
 
                     b.Property<string>("PoTrackingId");
 
+                    b.Property<int>("PurchaseOrderStatusId");
+
                     b.Property<double>("PurchaseOrderTotalValue");
 
-                    b.Property<int>("Status");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("PurchaseOrderStatusId");
 
                     b.ToTable("PurchaseOrder");
                 });
@@ -375,6 +407,18 @@ namespace SiberianSales2.Migrations
                     b.HasIndex("PurchaseOrderId");
 
                     b.ToTable("PurchaseOrderItem");
+                });
+
+            modelBuilder.Entity("SiberianSales2.Models.PurchaseOrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PurchaseOrderStatus");
                 });
 
             modelBuilder.Entity("SiberianSales2.Models.Reseller", b =>
@@ -438,13 +482,13 @@ namespace SiberianSales2.Migrations
 
                     b.Property<double>("SalesOrderComission");
 
+                    b.Property<int>("SalesOrderStatusId");
+
                     b.Property<double>("SalesOrderTotalValue");
 
                     b.Property<int>("SellerId");
 
                     b.Property<DateTime>("SendingDate");
-
-                    b.Property<int>("Status");
 
                     b.Property<string>("TrackingId");
 
@@ -453,6 +497,8 @@ namespace SiberianSales2.Migrations
                     b.HasIndex("ClientId");
 
                     b.HasIndex("ResellerId");
+
+                    b.HasIndex("SalesOrderStatusId");
 
                     b.HasIndex("SellerId");
 
@@ -479,6 +525,18 @@ namespace SiberianSales2.Migrations
                     b.ToTable("SalesOrderItem");
                 });
 
+            modelBuilder.Entity("SiberianSales2.Models.SalesOrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SalesOrderStatus");
+                });
+
             modelBuilder.Entity("SiberianSales2.Models.SalesProposal", b =>
                 {
                     b.Property<int>("Id")
@@ -494,6 +552,8 @@ namespace SiberianSales2.Migrations
 
                     b.Property<DateTime>("ProposalDate");
 
+                    b.Property<int>("ProposalStatusId");
+
                     b.Property<DateTime>("ProposalValidity");
 
                     b.Property<double>("ProposalValue");
@@ -504,11 +564,11 @@ namespace SiberianSales2.Migrations
 
                     b.Property<int>("SellerId");
 
-                    b.Property<int>("Status");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("ProposalStatusId");
 
                     b.HasIndex("ResellerId");
 
@@ -550,21 +610,25 @@ namespace SiberianSales2.Migrations
 
                     b.Property<int>("DepartmentId");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<string>("Facebook");
 
                     b.Property<string>("Linkedin");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Phone");
+                    b.Property<string>("Phone")
+                        .IsRequired();
 
                     b.Property<string>("Phone2");
 
                     b.Property<int>("ResellerId");
 
-                    b.Property<string>("Skype");
+                    b.Property<string>("Skype")
+                        .IsRequired();
 
                     b.Property<string>("Tweeter");
 
@@ -686,6 +750,11 @@ namespace SiberianSales2.Migrations
 
             modelBuilder.Entity("SiberianSales2.Models.ComissionDuplicate", b =>
                 {
+                    b.HasOne("SiberianSales2.Models.ComissionStatus", "ComissionStatus")
+                        .WithMany()
+                        .HasForeignKey("ComissionStatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SiberianSales2.Models.SalesOrder", "SalesOrder")
                         .WithMany("ComissionDuplicates")
                         .HasForeignKey("SalesOrderId")
@@ -748,9 +817,22 @@ namespace SiberianSales2.Migrations
 
             modelBuilder.Entity("SiberianSales2.Models.ProposalItem", b =>
                 {
+                    b.HasOne("SiberianSales2.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SiberianSales2.Models.SalesProposal", "SalesProposal")
                         .WithMany("ProposalItems")
                         .HasForeignKey("SalesProposalId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SiberianSales2.Models.PurchaseOrder", b =>
+                {
+                    b.HasOne("SiberianSales2.Models.PurchaseOrderStatus", "PurchaseOrderStatus")
+                        .WithMany()
+                        .HasForeignKey("PurchaseOrderStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -786,6 +868,11 @@ namespace SiberianSales2.Migrations
                         .WithMany("ResellerSalesOrders")
                         .HasForeignKey("ResellerId");
 
+                    b.HasOne("SiberianSales2.Models.SalesOrderStatus", "SalesOrderStatus")
+                        .WithMany()
+                        .HasForeignKey("SalesOrderStatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SiberianSales2.Models.Seller", "Seller")
                         .WithMany("SalesOrders")
                         .HasForeignKey("SellerId")
@@ -805,6 +892,11 @@ namespace SiberianSales2.Migrations
                     b.HasOne("SiberianSales2.Models.Client", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SiberianSales2.Models.ProposalStatus", "ProposalStatus")
+                        .WithMany()
+                        .HasForeignKey("ProposalStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("SiberianSales2.Models.Reseller")

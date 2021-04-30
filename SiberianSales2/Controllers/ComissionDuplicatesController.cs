@@ -22,7 +22,7 @@ namespace SiberianSales2.Controllers
         // GET: ComissionDuplicates
         public async Task<IActionResult> Index()
         {
-            var siberianSales2Context = _context.ComissionDuplicate.Include(c => c.SalesOrder);
+            var siberianSales2Context = _context.ComissionDuplicate.Include(c => c.ComissionStatus).Include(c => c.SalesOrder);
             return View(await siberianSales2Context.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var comissionDuplicate = await _context.ComissionDuplicate
+                .Include(c => c.ComissionStatus)
                 .Include(c => c.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (comissionDuplicate == null)
@@ -48,7 +49,8 @@ namespace SiberianSales2.Controllers
         // GET: ComissionDuplicates/Create
         public IActionResult Create()
         {
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference");
+            ViewData["ComissionStatusId"] = new SelectList(_context.ComissionStatus, "Id", "Id");
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ComissionDuplicateValue,AvaliableDate,Status,SalesOrderId")] ComissionDuplicate comissionDuplicate)
+        public async Task<IActionResult> Create([Bind("Id,ComissionDuplicateValue,AvaliableDate,ComissionStatusId,SalesOrderId")] ComissionDuplicate comissionDuplicate)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +67,8 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
+            ViewData["ComissionStatusId"] = new SelectList(_context.ComissionStatus, "Id", "Id", comissionDuplicate.ComissionStatusId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 
@@ -82,7 +85,8 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
+            ViewData["ComissionStatusId"] = new SelectList(_context.ComissionStatus, "Id", "Id", comissionDuplicate.ComissionStatusId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 
@@ -91,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ComissionDuplicateValue,AvaliableDate,Status,SalesOrderId")] ComissionDuplicate comissionDuplicate)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ComissionDuplicateValue,AvaliableDate,ComissionStatusId,SalesOrderId")] ComissionDuplicate comissionDuplicate)
         {
             if (id != comissionDuplicate.Id)
             {
@@ -118,7 +122,8 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Reference", comissionDuplicate.SalesOrderId);
+            ViewData["ComissionStatusId"] = new SelectList(_context.ComissionStatus, "Id", "Id", comissionDuplicate.ComissionStatusId);
+            ViewData["SalesOrderId"] = new SelectList(_context.SalesOrder, "Id", "Id", comissionDuplicate.SalesOrderId);
             return View(comissionDuplicate);
         }
 
@@ -131,6 +136,7 @@ namespace SiberianSales2.Controllers
             }
 
             var comissionDuplicate = await _context.ComissionDuplicate
+                .Include(c => c.ComissionStatus)
                 .Include(c => c.SalesOrder)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (comissionDuplicate == null)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SiberianSales2.Models.Enums;
 
 namespace SiberianSales2.Models
 {
@@ -23,7 +22,8 @@ namespace SiberianSales2.Models
         public long Observation { get; set; }
         public int ResellerFiscalCupom { get; set; }
         public DateTime ResellerFiscalCupomDate { get; set; }
-        public SalesOrderStatus Status { get; set; }
+        public SalesOrderStatus SalesOrderStatus { get; set; }
+        public int SalesOrderStatusId { get; set; }
         public double SalesOrderTotalValue { get; set; }
         public double SalesOrderComission { get; set; }
         public ICollection<SalesOrderItem> SalesOrdersItems { get; set; } = new List<SalesOrderItem>();
@@ -80,7 +80,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public SalesOrder(int id, int sellerId, string reference, DateTime orderDate, DateTime sendingDate, int fiscalCupom, string trackingId, int freightTypeId, double freightValue, long observation, int resellerFiscalCupom, DateTime resellerFiscalCupomDate, SalesOrderStatus status, double salesOrderTotalValue, double salesOrderComission)
+        public SalesOrder(int id, int sellerId, string reference, DateTime orderDate, DateTime sendingDate, int fiscalCupom, string trackingId, int freightTypeId, double freightValue, long observation, int resellerFiscalCupom, DateTime resellerFiscalCupomDate, int salesOrderStatusId, double salesOrderTotalValue, double salesOrderComission)
         {
             Id = id;
             SellerId = sellerId;
@@ -94,7 +94,7 @@ namespace SiberianSales2.Models
             Observation = observation;
             ResellerFiscalCupom = resellerFiscalCupom;
             ResellerFiscalCupomDate = resellerFiscalCupomDate;
-            Status = status;
+            SalesOrderStatusId = salesOrderStatusId;
             SalesOrderTotalValue = salesOrderTotalValue;
             SalesOrderComission = salesOrderComission;
         }

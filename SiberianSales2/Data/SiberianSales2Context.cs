@@ -39,6 +39,9 @@ namespace SiberianSales2.Data
         public DbSet<Supplier> Supplier { get; set; }
         public DbSet<TaxNumber> TaxNumber { get; set; }
         public DbSet<PaymentTerms> PaymentTerms { get; set; }
-        public IEnumerable ProposalStatus { get; internal set; }
+        public DbSet<ProposalStatus> ProposalStatus { get; set; }
+        public DbSet<SalesOrderStatus> SalesOrderStatus { get; set; }
+        public DbSet<PurchaseOrderStatus> PurchaseOrderStatus { get; set; }
+        public DbSet<ComissionStatus> ComissionStatus { get; set; }
     }
 }

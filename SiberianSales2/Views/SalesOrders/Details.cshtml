@@ -11,16 +11,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Seller)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seller.Email)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Client)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Client.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Seller)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Seller.Id)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Reference)
@@ -83,10 +83,10 @@
             @Html.DisplayFor(model => model.ResellerFiscalCupomDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.SalesOrderStatus)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.SalesOrderStatus.Id)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.SalesOrderTotalValue)

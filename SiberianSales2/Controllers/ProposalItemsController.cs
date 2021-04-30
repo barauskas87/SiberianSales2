@@ -22,7 +22,7 @@ namespace SiberianSales2.Controllers
         // GET: ProposalItems
         public async Task<IActionResult> Index()
         {
-            var siberianSales2Context = _context.ProposalItem.Include(p => p.SalesProposal);
+            var siberianSales2Context = _context.ProposalItem.Include(p => p.Product).Include(p => p.SalesProposal);
             return View(await siberianSales2Context.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var proposalItem = await _context.ProposalItem
+                .Include(p => p.Product)
                 .Include(p => p.SalesProposal)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (proposalItem == null)
@@ -48,6 +49,7 @@ namespace SiberianSales2.Controllers
         // GET: ProposalItems/Create
         public IActionResult Create()
         {
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber");
             ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference");
             return View();
         }
@@ -57,7 +59,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProposalItemUnitValue,ProposalItemUnitCost,ProposalItemQtd,SalesProposalId")] ProposalItem proposalItem)
+        public async Task<IActionResult> Create([Bind("Id,ProductId,ProposalItemUnitValue,ProposalItemUnitCost,ProposalItemQtd,SalesProposalId")] ProposalItem proposalItem)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +67,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", proposalItem.ProductId);
             ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
@@ -82,6 +85,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", proposalItem.ProductId);
             ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
@@ -91,7 +95,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProposalItemUnitValue,ProposalItemUnitCost,ProposalItemQtd,SalesProposalId")] ProposalItem proposalItem)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,ProposalItemUnitValue,ProposalItemUnitCost,ProposalItemQtd,SalesProposalId")] ProposalItem proposalItem)
         {
             if (id != proposalItem.Id)
             {
@@ -118,6 +122,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ProductId"] = new SelectList(_context.Product, "Id", "PartNumber", proposalItem.ProductId);
             ViewData["SalesProposalId"] = new SelectList(_context.SalesProposal, "Id", "Reference", proposalItem.SalesProposalId);
             return View(proposalItem);
         }
@@ -131,6 +136,7 @@ namespace SiberianSales2.Controllers
             }
 
             var proposalItem = await _context.ProposalItem
+                .Include(p => p.Product)
                 .Include(p => p.SalesProposal)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (proposalItem == null)

@@ -22,7 +22,8 @@ namespace SiberianSales2.Controllers
         // GET: PurchaseOrders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PurchaseOrder.ToListAsync());
+            var siberianSales2Context = _context.PurchaseOrder.Include(p => p.PurchaseOrderStatus);
+            return View(await siberianSales2Context.ToListAsync());
         }
 
         // GET: PurchaseOrders/Details/5
@@ -34,6 +35,7 @@ namespace SiberianSales2.Controllers
             }
 
             var purchaseOrder = await _context.PurchaseOrder
+                .Include(p => p.PurchaseOrderStatus)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (purchaseOrder == null)
             {
@@ -46,6 +48,7 @@ namespace SiberianSales2.Controllers
         // GET: PurchaseOrders/Create
         public IActionResult Create()
         {
+            ViewData["PurchaseOrderStatusId"] = new SelectList(_context.PurchaseOrderStatus, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PoReference,POrderDate,PSendingDate,PoFiscalCupom,PoTrackingId,PoObservation,Status,PurchaseOrderTotalValue")] PurchaseOrder purchaseOrder)
+        public async Task<IActionResult> Create([Bind("Id,PoReference,POrderDate,PSendingDate,PoFiscalCupom,PoTrackingId,PoObservation,PurchaseOrderStatusId,PurchaseOrderTotalValue")] PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SiberianSales2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PurchaseOrderStatusId"] = new SelectList(_context.PurchaseOrderStatus, "Id", "Id", purchaseOrder.PurchaseOrderStatusId);
             return View(purchaseOrder);
         }
 
@@ -78,6 +82,7 @@ namespace SiberianSales2.Controllers
             {
                 return NotFound();
             }
+            ViewData["PurchaseOrderStatusId"] = new SelectList(_context.PurchaseOrderStatus, "Id", "Id", purchaseOrder.PurchaseOrderStatusId);
             return View(purchaseOrder);
         }
 
@@ -86,7 +91,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PoReference,POrderDate,PSendingDate,PoFiscalCupom,PoTrackingId,PoObservation,Status,PurchaseOrderTotalValue")] PurchaseOrder purchaseOrder)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PoReference,POrderDate,PSendingDate,PoFiscalCupom,PoTrackingId,PoObservation,PurchaseOrderStatusId,PurchaseOrderTotalValue")] PurchaseOrder purchaseOrder)
         {
             if (id != purchaseOrder.Id)
             {
@@ -113,6 +118,7 @@ namespace SiberianSales2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PurchaseOrderStatusId"] = new SelectList(_context.PurchaseOrderStatus, "Id", "Id", purchaseOrder.PurchaseOrderStatusId);
             return View(purchaseOrder);
         }
 
@@ -125,6 +131,7 @@ namespace SiberianSales2.Controllers
             }
 
             var purchaseOrder = await _context.PurchaseOrder
+                .Include(p => p.PurchaseOrderStatus)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (purchaseOrder == null)
             {

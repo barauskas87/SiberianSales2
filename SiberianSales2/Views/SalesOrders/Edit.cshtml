@@ -14,14 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="ClientId" class="control-label"></label>
-                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
-                <span asp-validation-for="ClientId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="SellerId" class="control-label"></label>
                 <select asp-for="SellerId" class="form-control" asp-items="ViewBag.SellerId"></select>
                 <span asp-validation-for="SellerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Reference" class="control-label"></label>
@@ -74,9 +74,9 @@
                 <span asp-validation-for="ResellerFiscalCupomDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <label asp-for="SalesOrderStatusId" class="control-label"></label>
+                <select asp-for="SalesOrderStatusId" class="form-control" asp-items="ViewBag.SalesOrderStatusId"></select>
+                <span asp-validation-for="SalesOrderStatusId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SalesOrderTotalValue" class="control-label"></label>

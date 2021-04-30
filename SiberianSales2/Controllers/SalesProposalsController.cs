@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SiberianSales2.Data;
 using SiberianSales2.Models;
+using SiberianSales2.Services;
 
 namespace SiberianSales2.Controllers
 {
@@ -22,8 +22,18 @@ namespace SiberianSales2.Controllers
         // GET: SalesProposals
         public async Task<IActionResult> Index()
         {
-            var siberianSales2Context = _context.SalesProposal.Include(s => s.Client).Include(s => s.Seller);
+            var siberianSales2Context = _context.SalesProposal.Include(s => s.Client).Include(s => s.ProposalStatus).Include(s => s.Seller);
             return View(await siberianSales2Context.ToListAsync());
+        }
+
+        public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime?maxDate)
+        {
+            return View();
+        }
+
+        public IActionResult GroupingSearch()
+        {
+            return View();
         }
 
         // GET: SalesProposals/Details/5
@@ -36,6 +46,7 @@ namespace SiberianSales2.Controllers
 
             var salesProposal = await _context.SalesProposal
                 .Include(s => s.Client)
+                .Include(s => s.ProposalStatus)
                 .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesProposal == null)
@@ -50,6 +61,7 @@ namespace SiberianSales2.Controllers
         public IActionResult Create()
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName");
+            ViewData["ProposalStatusId"] = new SelectList(_context.ProposalStatus, "Id", "Status");
             ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name");
             return View();
         }
@@ -59,7 +71,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
+        public async Task<IActionResult> Create([Bind("Id,Reference,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,ProposalStatusId,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +80,7 @@ namespace SiberianSales2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["ProposalStatusId"] = new SelectList(_context.ProposalStatus, "Id", "Status", salesProposal.ProposalStatusId);
             ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
@@ -86,6 +99,7 @@ namespace SiberianSales2.Controllers
                 return NotFound();
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["ProposalStatusId"] = new SelectList(_context.ProposalStatus, "Id", "Status", salesProposal.ProposalStatusId);
             ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
@@ -95,7 +109,7 @@ namespace SiberianSales2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,Status,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Reference,SellerId,ClientId,ProposalDate,ProposalValidity,FreightValue,ProposalStatusId,Observations,ProposalValue,ProposalComissionValue")] SalesProposal salesProposal)
         {
             if (id != salesProposal.Id)
             {
@@ -123,6 +137,7 @@ namespace SiberianSales2.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "ClientFantasyName", salesProposal.ClientId);
+            ViewData["ProposalStatusId"] = new SelectList(_context.ProposalStatus, "Id", "Status", salesProposal.ProposalStatusId);
             ViewData["SellerId"] = new SelectList(_context.Seller, "Id", "Name", salesProposal.SellerId);
             return View(salesProposal);
         }
@@ -137,6 +152,7 @@ namespace SiberianSales2.Controllers
 
             var salesProposal = await _context.SalesProposal
                 .Include(s => s.Client)
+                .Include(s => s.ProposalStatus)
                 .Include(s => s.Seller)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (salesProposal == null)

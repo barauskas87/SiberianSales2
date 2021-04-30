@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SiberianSales2.Models.Enums;
 
 namespace SiberianSales2.Models
 {
@@ -15,7 +14,8 @@ namespace SiberianSales2.Models
         public int PoFiscalCupom { get; set; }
         public string PoTrackingId { get; set; }
         public string PoObservation { get; set; }
-        public PurchaseOrderStatus Status { get; set; }
+        public PurchaseOrderStatus PurchaseOrderStatus { get; set; }
+        public int PurchaseOrderStatusId { get; set; }
         public double PurchaseOrderTotalValue { get; set; }
         public ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; } = new List<PurchaseOrderItem>();
 
@@ -41,7 +41,7 @@ namespace SiberianSales2.Models
         {
         }
 
-        public PurchaseOrder(int id, string poReference, DateTime pOrderDate, DateTime pSendingDate, int poFiscalCupom, string poTrackingId, string poObservation, PurchaseOrderStatus status, double purchaseOrderTotalValue)
+        public PurchaseOrder(int id, string poReference, DateTime pOrderDate, DateTime pSendingDate, int poFiscalCupom, string poTrackingId, string poObservation, int purchaseOrderStatusId, double purchaseOrderTotalValue)
         {
             Id = id;
             PoReference = poReference;
@@ -50,7 +50,7 @@ namespace SiberianSales2.Models
             PoFiscalCupom = poFiscalCupom;
             PoTrackingId = poTrackingId;
             PoObservation = poObservation;
-            Status = status;
+            PurchaseOrderStatusId = purchaseOrderStatusId;
             PurchaseOrderTotalValue = purchaseOrderTotalValue;
         }
 
